@@ -68,18 +68,18 @@
         <li class="miscellaneous"><a href="" onclick="changePage('category.html?cat=miscellaneous');" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
           </ul>
         </div>
-    <div id="blog-content" data-role="content" data-iscroll class="single">
+    <div id="single-content" data-role="content" data-iscroll class="single">
         <div id="single-data"  class="singlewrapper">
 
         <script id="single-template" type="text/x-handlebars-template">
             <h1 style="whitespace:normal">{{{title}}}</h1>
             <strong>By {{{author.name}}} on {{prettifyDate date}}, Under Category: [{{categories.0.title}}] </strong>
             <br><br>
-            <img src="{{thumbnail_images.mag-image.url}}" alt="" class="img">
+            <img src="{{thumbnail_images.full.url}}" alt="" class="img">
             <br>
             {{{content}}}
             {{share title url}}
-        <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a">
+        <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a" class="comment">
             <h3>{{comments.length}} Comments</h3>
             {{#each comments}}
                 <h3>{{{name}}}</h3>{{date}}
@@ -116,10 +116,23 @@
 
         <script type="text/javascript">
             app.single();
-             $('#single-post-page').one("pageshow",function(event, ui){
+             $('#single-post-page').on("pageshow",function(event, ui){
                   
                 $("[data-iscroll]").iscrollview(); // First create iscrollview
 $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
+                 
+                 setTimeout(function(){
+ $('[data-iscroll]').iscrollview("refresh");
+},100);
+                 
+                    // Set the variable $width to the width of our wrapper on page load
+     $width = $('#single-data').width();
+     // Target all images inside the #content. This works best if you want to ignore certain images that are part of the layout design
+     $('#single-data img').css({
+          // Using jQuery CSS we write the $width variable we previously specified as a pixel value. We use max-width incase the image is smaller than our viewport it won't scale it larger. Don't forget to set height to auto or else it will squish your photos.
+          'max-width' : $width , 'height' : 'auto'
+          });
+                 
                 
                
             });

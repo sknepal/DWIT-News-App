@@ -117,7 +117,7 @@
         <script type="text/javascript">
             app.single();
              $('#single-post-page').on("pageshow",function(event, ui){
-                  
+
                 $("[data-iscroll]").iscrollview(); // First create iscrollview
 $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                  
@@ -132,10 +132,20 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
           // Using jQuery CSS we write the $width variable we previously specified as a pixel value. We use max-width incase the image is smaller than our viewport it won't scale it larger. Don't forget to set height to auto or else it will squish your photos.
           'max-width' : $width , 'height' : 'auto'
           });
-                 
-                
                
             });
+            
+        $(window).bind( 'orientationchange', function(e){
+    if ($.event.special.orientationchange.orientation()){
+      $width = $('#single-data').width();
+     // Target all images inside the #content. This works best if you want to ignore certain images that are part of the layout design
+     $('#single-data img').css({
+          // Using jQuery CSS we write the $width variable we previously specified as a pixel value. We use max-width incase the image is smaller than our viewport it won't scale it larger. Don't forget to set height to auto or else it will squish your photos.
+          'max-width' : $width , 'height' : 'auto'
+          });
+    }
+});
+            
               $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   

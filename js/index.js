@@ -179,7 +179,22 @@ var app = {
     },
 
     single: function () {
-        var postDataStorage = localStorage.getItem('postData');
+        var postDataLocation;
+         if ($.mobile.activePage[0].id == 'home-page'){
+                  postDataLocation = 'indexPostData';
+         }
+                  else if ($.mobile.activePage[0].id == 'category-page'){
+                           postDataLocation = 'categoryPostData';
+                  }
+                    else if($.mobile.activePage[0].id == 'search-page'){
+                            postDataLocation = 'searchPostData';
+                    }
+                        else if ($.mobile.activePage[0].id == 'authorposts-page'){
+                                postDataLocation = 'authorPostData';
+                        }
+             
+        
+        var postDataStorage = localStorage.getItem(postDataLocation);
         var source = $("#single-template").html();
         var template = Handlebars.compile(source);
         var postData = template(JSON.parse(postDataStorage));
@@ -226,9 +241,9 @@ var app = {
                 var source = $("#page-template").html();
                 var template = Handlebars.compile(source);
                 var pageData = template(data);
-               $('#page-data').html(pageData);
-        $('#page-data').trigger('create');
-                      
+               $('.pwrapper').append(pageData);
+        $('.pwrapper').trigger('create');
+                  //  $('#page-data').iscrollview("refresh");
                 doneLoading();
 
             },
@@ -332,9 +347,25 @@ var app = {
             return dfd.promise();
         };
         getPosts().then(function (data) {
+            var post;
             //   localStorage.removeItem("postData");
             $('#' + $.mobile.activePage.attr('id') + '-posts').on('click', 'li', function (e) {
-                localStorage.setItem('postData', JSON.stringify(data.posts[$(this).index()]));
+             
+                if ($.mobile.activePage[0].id == 'home-page'){
+                  post = 'indexPostData';
+                }
+                  else if ($.mobile.activePage[0].id == 'category-page'){
+                           post = 'categoryPostData';
+                  }
+                    else if($.mobile.activePage[0].id == 'search-page'){
+                            post = 'searchPostData';
+                    }
+                        else if ($.mobile.activePage[0].id== 'authorposts-page'){
+                                post = 'authorPostData';
+                        }
+    
+                
+                localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
                   // $( "#category-page" ).page( 'option', 'domCache', true );
  
               //  if ($.mobile.activePage.attr('id') == 'category-page') viewed = true;

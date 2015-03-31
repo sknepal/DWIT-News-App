@@ -151,6 +151,20 @@
           $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   
+       
+                 $(document).delegate("#category-page", "pageinit", function(event){
+    $(".iscroll-wrapper", this).bind({
+        iscroll_onpulldown: function(event, data){
+            //react to a pull-down as necessary here
+            loading();
+            app.get("category", 1, urlParams["cat"]);
+            console.log(where);
+            //then call this to reset the pull-to-refresh controls:
+            data.iscrollview.refresh();
+        }
+    });
+});
+         
   </script>
   </div>
 

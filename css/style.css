@@ -236,6 +236,13 @@ overflow-wrap: break-word;
     width: 100% !important;
     
 }  
+/*
+.pwrapper, .pwrapper div.iscroll-scroller {
+    width: 100% !important;
+    
+}  
+*/
+
 
 .comment img{
    width: auto;
@@ -255,7 +262,9 @@ overflow-wrap: break-word;
 }*/
 .single div.iscroll-scroller {
      width: 100% !important;
-   
+}
+.page div.iscroll-scroller {
+    width: 100% !important;
     
 }
     .singlewrapper {
@@ -269,7 +278,7 @@ width:auto;
 .ui-page {
     -webkit-backface-visibility: hidden;
 }
-.blog, .cat, .authors, .authorpostsblog {
+.blog, .cat, .authors, .authorpostsblog{
     padding: 0 !important;
 }
 

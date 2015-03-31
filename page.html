@@ -4,7 +4,8 @@
   <meta name="format-detection" content="telephone=no" />
      <meta name="viewport" id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
         
-   <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+   
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
     
   <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -19,6 +20,7 @@
   <script type="text/javascript" src="js/SocialSharing.js"></script>
   <script src="js/iscroll.js" type="text/javascript"></script>
   <script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
+            <script src="js/pull.js" type="text/javascript"></script>
         <script src="js/custom.js" type="text/javascript"></script>
     
   <title>Page</title>
@@ -68,16 +70,16 @@
         <li class="miscellaneous"><a href="" onclick="changePage('category.html?cat=miscellaneous');" title="Miscellaneous" data-rel="close" in-app="true">Miscellaneous</a></li>
       </ul>
     </div>
-    <div id="blog-content" data-role="content" data-iscroll>
+    <div id="page-content" data-role="content" class="page" data-iscroll>
       
-      <div id="page-data" class ="wrapper"></div>
+      <div id="page-data" class ="pwrapper" >
       <script id="page-template" type="text/x-handlebars-template">
           
                       <h3 style="whitespace:normal">{{{page.title}}}</h3>
           {{{page.content}}}
           
       </script>
-        
+        </div>
     
     </div>
     <div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false">
@@ -101,7 +103,25 @@
   })();
     
    app.page(urlParams["page"]);
-       });    
+    
+                    $("[data-iscroll]").iscrollview(); // First create iscrollview
+$("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
+                 
+                 setTimeout(function(){
+ $('[data-iscroll]').iscrollview("refresh");
+},100);
+                 
+                    // Set the variable $width to the width of our wrapper on page load
+     $width = $('#page-data').width();
+     // Target all images inside the #content. This works best if you want to ignore certain images that are part of the layout design
+     $('#page-data img').css({
+          // Using jQuery CSS we write the $width variable we previously specified as a pixel value. We use max-width incase the image is smaller than our viewport it won't scale it larger. Don't forget to set height to auto or else it will squish your photos.
+          'max-width' : $width , 'height' : 'auto'
+          });
+               
+    
+       }); 
+          
 $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   
@@ -115,6 +135,8 @@ $("#panel-left").on("click", function () {
     window.open($(e.currentTarget).attr('href'), '_system', '');
    }
 });
+          
+          
   </script>
   </div>
 

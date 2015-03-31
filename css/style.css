@@ -233,11 +233,17 @@ overflow-wrap: break-word;
     
 }  */
 
-.single {
+/*.single {
     padding: 3 !important;
+}*/
+.single div.iscroll-scroller {
+     width: 100% !important;
+   
+    
 }
-.singlewrapper, .singlewrapper div.iscroll-scroller {
+    .singlewrapper {
     width: 100% !important;
+    
 }
 .ui-listview {
     margin: 0 !important;
@@ -255,6 +261,12 @@ overflow-wrap: break-word;
 
 body{
 background-color:transparent;
+}
+
+img {
+max-width: 65%;
+    height: 50%;
+
 }
 /*'\f0e0'
 /*

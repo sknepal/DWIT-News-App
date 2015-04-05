@@ -1,10 +1,14 @@
 var page, catpage, where;
-   var urlParams, viewed = false;
+   var urlParams, urlParamsAuth, viewed = false;
+
+$("#panel-left").on("click", function () {
+   $("#panel-left").panel("close");
+  });   
 
 function loading() {
     $.mobile.loading('show', {
         theme: "b",
-        text: "Loading...",
+        text: "",
         textonly: false,
         textVisible: true
     });
@@ -25,10 +29,10 @@ function changeCat(changeTo){
     });
 }
 
-function changePage(changeTo){
-    
+function changePage(changeTo, pageTransition){
+     if (typeof(pageTransition)==='undefined') pageTransition = 'flow';
     $(':mobile-pagecontainer').pagecontainer('change',changeTo, {
-                          transition: 'flow',
+                          transition: pageTransition,
         showLoadMsg             : true,
        // changeHash: true,
                         // reverse: false,
@@ -37,6 +41,7 @@ function changePage(changeTo){
                          // reload:false
                         });
 }
+
 
 function doneLoading() {
     $.mobile.loading('hide');

@@ -3,10 +3,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="viewport" id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
+		<meta name="viewport"  id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
+
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
@@ -19,14 +20,13 @@
 		<script type="text/javascript" src="js/SocialSharing.js"></script>
 		<script src="js/iscroll.js" type="text/javascript"></script>
 		<script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
-		<script src="pullcat.js" type="text/javascript"></script>
-		<script src="js/custom.js" type="text/javascript"></script>
 		<!-- Font-Awesome Icons -->
 		<link href="font_awesome/css/font-awesome.min.css" rel="stylesheet">
-		<title>Search Results</title>
+		<script src="js/custom.js" type="text/javascript"></script>
+		<title>Contact</title>
 	</head>
 	<body>
-		<div class="hwrapper" data-role="page" id="search-page">
+		<div class="hwrapper" id="contact-page" data-role="page" >
 			<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
 				<ul>
 					<li class="home">
@@ -39,10 +39,10 @@
 						<a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" >About Us</a>
 					</li>
 					<li class="contact">
-						<a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true">Contact</a>
+						<a href="#popupContact" data-rel="popup" data-position-to="window" data-transition="pop" title="Contact" data-rel="close" in-app="true">Contact</a>
 					</li>
 					<li class="search">
-						<a  href="javascript:$.mobile.activePage.find('#popupSearch').popup('open');" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
+						<a href="javascript:$.mobile.activePage.find('#popupSearch').popup('open');" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
 					</li>
 
 					<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
@@ -51,38 +51,16 @@
 
 						</form>
 					</div>
-					<div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
-						<strong> The Lacuna Blog </strong>
-						<ul>
-							<li>
-								Version: 1.0
-							</li>
-							<li>
-								Release Date: 2015-03-16
-							</li>
-							<li>
-								Developed by: Subigya Kumar Nepal
-							</li>
-							<li>
-								Contact: <a href="mailto:admin@thelacunablog.com?subject=TheLacunaBlog mobile app&body=Hi!" target="_blank">Email</a>
-							</li>
-							<li>
-								Twitter: <a href="http://www.twitter.com/SkNepal">@SkNepal</a>
-							</li>
-						</ul>
-					</div>
-
 				</ul>
 			</div>
 			<div class="header" data-role="header">
 				<span class="open left"><a href="#panel-left">&#xe809;</a></span>
 				<span class="title">DWIT News</span>
 				<span class="open right"><a href="#panel-right">&#xe805;</a></span>
-			</div>
-
+			</div><!-- /#header -->
 			<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
 
-			<ul>
+				<ul>
 					<li class="news">
 						<a href="" onclick="changePage('category.html?cat=news-3');" title="News" data-rel="close" in-app="true">News</a>
 					</li>
@@ -102,85 +80,106 @@
 					</li>
 				</ul>
 			</div>
-			<div id="searchresults-content" data-role="content" class="blog" >
-				<div id="searchresults-data" data-iscroll="" class="swrapper">
-
-					<script id="search-template" type="text/x-handlebars-template">
-						{{#each posts}}
-						<li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
-						<h3 style="font-size: 22px;">{{{this.title}}}</h3>
-						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
-						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
-						<p style="white-space:normal"> <strong> Author:</strong> {{{author.name}}}</p>
-						<p style="white-space:normal"><strong style="color: rgb(16, 83, 137);font-size: 14px;text-shadow: none;"> {{categories.0.title}}</strong> - {{prettifyDate date}}  </p>
-						<p class="ui-li-aside"></p>
-						</a></li>
-						{{/each}}
-					</script>
-				</div>
+			<div id="contact-content" data-role="content" data-iscroll class="contact">
+			
 			</div>
-			<div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false" data-transition="slidedown">
-				<div data-role="navbar">
+
+			<div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false"  data-transition="slidedown" data-position="fixed">
+				<div data-role="navbar" data-theme="b" data-content-theme="b">
 					<ul>
-						<li>
-							<a id="feedForward" href="javascript:prev('search', urlParams['search'])" in-app="true"><i class="fa fa-2x fa-arrow-circle-left"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Prev</span></a>
+
+						<li class="ui-block-a">
+							<a id="feedForward" href="javascript:share()" data-transition="pop" in-app="true" class="ui-link ui-btn"><i class="fa fa-2x fa-share-alt-square"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Share</span></a>
 						</li>
-						<li>
-							<a id="feedForward" href="javascript:next('search', urlParams['search'])" in-app="true"><i class="fa fa-2x fa-arrow-circle-right"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Next</span></a>
+						<li class="ui-block-b">
+							<a id="feedForward" class="ui-link ui-btn" href="#popupComment" data-rel="popup" data-position-to="window" data-transition="pop" in-app="true" aria-haspopup="true" aria-owns="popupComment" aria-expanded="false"><i class="fa fa-2x fa-comments-o"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Comment</span></a>
 						</li>
+
 					</ul>
 				</div>
 			</div>
-			<script>
-				$('form').on('submit', function(e) {
-					e.preventDefault();
-				});
-				page = 1;
-				$('#search-page').one("pageshow", function(event, ui) {
-                    $('.header .title').text('Search Results');
-                    
-                            $.mobile.activePage.find('#panel-left').on("click", function () {
+
+			<script type="text/javascript">
+				app.single();
+				$('#scontact-page').one("pageshow", function(event, ui) {
+                         
+                    $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");
   }); 
-					// Handler for .ready() called.
-					loading();
-					var urlParams;
-					(window.onpopstate = function() {
+/*
+					$("[data-iscroll]").iscrollview();
+					// First create iscrollview
+					$("[data-iscroll]").iscrollview("refresh");
+					// now refresh the iscrollview
 
-						var match,
-						    pl = /\+/g, // Regex for replacing addition symbol with a space
-						    search = /([^&=]+)=?([^&]*)/g,
-						    decode = function(s) {
-							return decodeURIComponent(s.replace(pl, " "));
-						},
-						    query = window.location.search.substring(1);
-
-						urlParams = {};
-						while ( match = search.exec(query))
-						urlParams[decode(match[1])] = decode(match[2]);
-					})();
-					app.get("search", 1, urlParams["search"]);
+					setTimeout(function() {
+						$('[data-iscroll]').iscrollview("refresh");
+					}, 100);*/
+                    	// Set the variable $width to the width of our wrapper on page load
+					$width = $('#single-data').width();
+					// Target all images inside the #content. This works best if you want to ignore certain images that are part of the layout design
+					$('#single-data img').css({
+						// Using jQuery CSS we write the $width variable we previously specified as a pixel value. We use max-width incase the image is smaller than our viewport it won't scale it larger. Don't forget to set height to auto or else it will squish your photos.
+						'max-width' : $width,
+						'height' : 'auto'
+					});
+  
+					     $("[data-iscroll]").iscrollview(); // First create iscrollview
+$("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
+                 
+                 setTimeout(function(){
+ $('[data-iscroll]').iscrollview("refresh");
+},100);
+     
+				
 
 				});
-
-				$("#panel-left").on("click", function() {
-					$("#panel-left").panel("close");
-				});
+                
+                
 				$('form').on('submit', function(e) {
 					e.preventDefault();
 				});
+
 				$('a').click(function(e) {
 					var href = ["#panel-left", "#panel-right", "#"];
 					if (!($.inArray($(e.currentTarget).attr('href'), href) != -1 || $(e.currentTarget).attr('in-app') == 'true')) {
 						e.preventDefault();
-						console.log("second");
 						window.open($(e.currentTarget).attr('href'), '_system', '');
 					}
 				});
+               
+                   
+				/*            document.addEventListener("deviceready", appReady, false);
+
+				//HANDLE BACK BUTTON
+				function appReady()
+				{
+				document.addEventListener('backbutton', function(e){
+				/*var activePage = $.mobile.activePage.attr('id');
+				alert(activePage);
+				$.mobile.changePage('category.html?cat=how-tos');*/
+				// parent.history.back();
+				/*   var activePage = $.mobile.activePage.attr('id');
+
+				if(activePage == 'menuPage')
+				{
+				e.preventDefault();
+				navigator.app.exitApp();
+				}
+				else if(activePage == 'staticsPage')
+				{
+				e.preventDefault();
+				$.mobile.changePage('#menuPage');
+				}
+				else
+				{
+				navigator.app.backHistory();
+				}*/
+				//   }, false);
+				//}*/
 
 			</script>
 		</div>
-
 	</body>
 </html>

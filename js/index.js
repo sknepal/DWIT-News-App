@@ -192,6 +192,10 @@ var app = {
                         else if ($.mobile.activePage[0].id == 'authorposts-page'){
                                 postDataLocation = 'authorPostData';
                         }
+         else {
+                    parent.history.back();
+                    return;
+         }
              
         
         var postDataStorage = localStorage.getItem(postDataLocation);
@@ -201,7 +205,9 @@ var app = {
       //  $(".singlewrapper").html("")
         $(".singlewrapper").html(postData);
                 $('.singlewrapper').trigger("create");
-      //  $(".singlewrapper").updatelayout;
+          $("[data-iscroll]").iscrollview(); // First create iscrollview
+$("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
+  
      
       //          $(".singlewrapper").iscrollview();
         //$(".singlewrapper").iscrollview('refresh'); 
@@ -241,9 +247,14 @@ var app = {
                 var source = $("#page-template").html();
                 var template = Handlebars.compile(source);
                 var pageData = template(data);
-               $('.pwrapper').append(pageData);
-        $('.pwrapper').trigger('create');
-                  //  $('#page-data').iscrollview("refresh");
+                   $('.page .iscroll-content').html(pageData);
+        $('.page').trigger('create');
+            //  $('#page-data').iscrollview();
+                $('.page').iscrollview("refresh");
+              //  $('#page-data').iscrollview("refresh");
+               //   $('.pwrapper').iscrollview("resizeWrapper");
+                  //
+                 // $( wrap).iscrollview("resizeWrapper");
                 doneLoading();
 
             },

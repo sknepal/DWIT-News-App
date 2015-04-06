@@ -42,33 +42,13 @@
 					<li class="aboutus">
 						<a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" >About Us</a>
 					</li>
-					<li class="contact">
-						<a href="#popupContact" title="Contact" data-rel="popup" data-position-to="window" in-app="true" data-transition="none">Contact</a>
-					</li>
-					<div data-role="popup" id="popupContact" class="ui-content" data-theme="a" >
-						<strong> DWIT News App </strong>
-						<ul>
-							<li>
-								Version: 0.1 (Beta)
-							</li>
-							<li>
-								Release Date: 2015-04-06
-							</li>
-							<li>
-								Developed by: The Software Club
-							</li>
-                            <li></li>
-							<li>
-								Contact: <a href="mailto:_softwareclub@deerwalk.edu.np?subject=DWIT News App&body=Hi!" target="_blank">Email</a>
-							</li>
-						</ul>
-					</div>
+		
 					<li class="search">
 						<a  href="javascript:$.mobile.activePage.find('#popupSearch').popup('open');" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
 					</li>
 
 					<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-						<form action="" onsubmit="changePage('searchresults.html?search=' + document.getElementById('search').value);" target="_blank">
+						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val());" target="_blank">
 							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search" autofocus/>
 							<!--  <button data-theme="a" data-mini="true" type="submit" style="width:90px; margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%" onclick="">Search</button>-->
 
@@ -117,7 +97,7 @@
 
 					<script id="blog-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -162,8 +142,7 @@
 				 });*/
 
 				$('#home-page').one("pageshow", function(event, ui) {
-                    $('.header .title').text('DWIT News');
-                    
+             
 					// Handler for .ready() called.
 					loading();
 					app.get("blog", 1);

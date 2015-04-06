@@ -92,7 +92,7 @@ var app = {
     },
     commentSubmit: function (name, email, comment, id_of_post) {
         $.ajax({
-            url: 'http://www.thetaranights.com/api/respond/submit_comment/?post_id=420' + '&name=' + name + '&email=' + encodeURIComponent(email) + '&content=' + comment,
+            url: 'http://www.dwitnews.com/api/respond/submit_comment/?post_id=' + id_of_post + '&name=' + name + '&email=' + encodeURIComponent(email) + '&content=' + comment,
             type: 'GET',
             dataType: 'json',
             success: function (data) {

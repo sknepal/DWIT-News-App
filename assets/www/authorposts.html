@@ -75,7 +75,7 @@
 			</div>
 			<div class="header" data-role="header">
 				<span class="open left"><a href="#panel-left">&#xe809;</a></span>
-				<span class="title">TheLacunaBlog</span>
+				<span class="title">DWIT News</span>
 				<span class="open right"><a href="#panel-right">&#xe805;</a></span>
 			</div>
 
@@ -106,7 +106,7 @@
 				<div id="blog-data" data-iscroll="" class="awrapper">
 					<script id="authorposts-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a data-transition="flip" href="single.html?{{@index}}" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
 						<h3 style="font-size: 22px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -135,7 +135,7 @@
 				page = 1;
 			
 				$(document).one("pageshow", '#authorposts-page', function(event, ui) {
-                    $('.header .title').text("Author Posts");
+     
         $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");
@@ -170,7 +170,21 @@
 						window.open($(e.currentTarget).attr('href'), '_system', '');
 					}
 				});
-			
+			         document.addEventListener("deviceready", onDeviceReady, false);
+
+// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+//
+function onDeviceReady() {
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+
+// Handle the back button
+//
+function onBackKeyDown() {
+     $("body").find("*").removeAttr("disabled");
+    $("body").find("a").unbind("click"); 
+}
 			</script>
 
 		</div>

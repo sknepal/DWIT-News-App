@@ -186,24 +186,24 @@ ul li h3 {
  }*/
 
 .hwrapper .panel.right .reviews a:before {
-	content: '\e82c';
+	content: '\e849';
 }
 
-.hwrapper .panel.right .how-tos a:before {
-	content: '\e810';
+.hwrapper .panel.right .news a:before {
+	content: '\e85C';
 }
-.hwrapper .panel.right .blogging a:before {
-	content: '\e815';
+.hwrapper .panel.right .opinion a:before {
+	content: '\e82f';
 }
-.hwrapper .panel.right .useful-tools a:before {
-	content: '\e811';
+.hwrapper .panel.right .creativity a:before {
+	content: '\e844';
 }
-.hwrapper .panel.right .miscellaneous a:before {
-	content: '\e819';
+.hwrapper .panel.right .faculty a:before {
+	content: '\e85B';
 }
 
-.hwrapper .footer .nav .prev a:before {
-	content: '\e812';
+.hwrapper .panel.right .people a:before {
+	content: '\e84A';
 }
 
 /*

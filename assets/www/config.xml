@@ -2,13 +2,15 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns = "http://www.w3.org/ns/widgets"
 xmlns:gap = "http://phonegap.com/ns/1.0"
-id = "com.thelacunablog"
-version = "1.0.0">
-<name>The Lacuna Blog</name>
+id = "com.dwitnews"
+version = "0.1.0">
+<name>DWIT News</name>
 <description>
-Android app for The Lacuna Blog
+Android app for DWIT News
 </description>
-<author href="http://thelacunablog.com" email="admin@thelacunablog.com">
+<author href="http://www.dwitnews.com" email="_softwareclub@deerwalk.edu.np">
+Abhishek Gupta
+Bhishan Bhandari
 Subigya Kumar Nepal
 </author>
 <!--

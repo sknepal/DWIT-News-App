@@ -326,7 +326,7 @@ div#popupSearch {
 	padding: 10px;
 	border-radius: 10px;
 	box-shadow: 5px 5px 5px #ddd;
-        position: top;
+        
 }
 div#popupSearch .ui-input-search:after {
 	margin-left: 3px;

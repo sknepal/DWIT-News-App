@@ -1,4 +1,5 @@
 var page, catpage, where;
+var urlParamsSearch;
    var urlParams, urlParamsAuth, viewed = false;
 
 $("#panel-left").on("click", function () {

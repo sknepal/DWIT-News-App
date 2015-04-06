@@ -102,10 +102,10 @@
 				<div data-role="navbar">
 					<ul>
 						<li>
-							<a id="feedForward" href="javascript:prev('search', urlParams['search'])" in-app="true"><i class="fa fa-2x fa-arrow-circle-left"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Prev</span></a>
+							<a id="feedForward" href="javascript:prev('search', urlParamsSearch['search'])" in-app="true"><i class="fa fa-2x fa-arrow-circle-left"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Prev</span></a>
 						</li>
 						<li>
-							<a id="feedForward" href="javascript:next('search', urlParams['search'])" in-app="true"><i class="fa fa-2x fa-arrow-circle-right"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Next</span></a>
+							<a id="feedForward" href="javascript:next('search', urlParamsSearch['search'])" in-app="true"><i class="fa fa-2x fa-arrow-circle-right"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Next</span></a>
 						</li>
 					</ul>
 				</div>
@@ -124,7 +124,7 @@
   }); 
 					// Handler for .ready() called.
 					loading();
-					var urlParams;
+					//var urlParamsSearch;
 					(window.onpopstate = function() {
 
 						var match,
@@ -135,11 +135,11 @@
 						},
 						    query = window.location.search.substring(1);
 
-						urlParams = {};
+						urlParamsSearch = {};
 						while ( match = search.exec(query))
-						urlParams[decode(match[1])] = decode(match[2]);
+						urlParamsSearch[decode(match[1])] = decode(match[2]);
 					})();
-					app.get("search", 1, urlParams["search"]);
+					app.get("search", 1, urlParamsSearch["search"]);
 
 				});
 

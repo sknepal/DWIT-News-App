@@ -17,6 +17,7 @@
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
 		<script type="text/javascript" src="js/SocialSharing.js"></script>
 		<script src="js/iscroll.js" type="text/javascript"></script>
 		<script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
@@ -94,17 +95,33 @@
 					<div class="iscroll-pulldown">
 						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
 					</div>
-
+<!--{{#ifCond categories.0.slug "news-snippets"}}
+                       
+{{else}}
+                    {{/ifCond}}-->
+                        
+                        
 					<script id="blog-template" type="text/x-handlebars-template">
 						{{#each posts}}
+                        
+                        
+  
 						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
 						<p style="white-space:normal"> <strong> Author:</strong> {{{author.name}}}</p>
-						<p style="white-space:normal"><strong style="color: rgb(16, 83, 137);font-size: 14px;text-shadow: none;"> {{categories.0.title}}</strong> - <em>{{prettifyDate date}}</em>  </p>
+						<p style="white-space:normal"><strong style="color: rgb(16, 83, 137);font-size: 14px;text-shadow: none;"> {{{categories.0.title}}}</strong> - <em>{{prettifyDate date}}</em>  </p>
 						<p class="ui-li-aside"></p>
 						</a></li>
+                        
+
+                        
+                       
+
+                        
+                        
+
 						{{/each}}
 					</script>
 

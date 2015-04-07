@@ -89,7 +89,7 @@
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
 						<p style="white-space:normal"> <strong> Author:</strong> {{{author.name}}}</p>
-						<p style="white-space:normal"><strong style="color: rgb(16, 83, 137);font-size: 14px;text-shadow: none;"> {{categories.0.title}}</strong> -  <em>{{prettifyDate date}} </em>  </p>
+						<p style="white-space:normal"><strong style="color: rgb(16, 83, 137);font-size: 14px;text-shadow: none;"> {{{categories.0.title}}}</strong> -  <em>{{prettifyDate date}} </em>  </p>
 						<p class="ui-li-aside"></p>
 						</a></li>
 						{{/each}}
@@ -148,21 +148,17 @@
 						window.open($(e.currentTarget).attr('href'), '_system', '');
 					}
 				});
-			         document.addEventListener("deviceready", onDeviceReady, false);
-
-// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
-//
-function onDeviceReady() {
-    // Register the event listener
-    document.addEventListener("backbutton", onBackKeyDown, false);
-}
-
-// Handle the back button
-//
-function onBackKeyDown() {
-     $("body").find("*").removeAttr("disabled");
-    $("body").find("a").unbind("click"); 
-}
+                
+                	$("#panel-left").on("click", function() {
+					$("#panel-left").panel("close");
+				});
+                
+		$(document).on("pagebeforehide","#authorposts-page",function(){ // When leaving pagetwo
+            request.abort();
+   $("body").find("*").removeAttr("disabled");
+    $("body").find("a").unbind("click");
+});
+                
 			</script>
 
 		</div>

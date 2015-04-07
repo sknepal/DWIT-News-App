@@ -17,9 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var title;
- var searchFound;
-var url;
+var title, searchFound, url, request, authRequest, pageRequest;
 
 this.share = function (name, uri) {
     if (typeof name === 'undefined' || typeof uri === 'undefined') {
@@ -31,6 +29,48 @@ this.share = function (name, uri) {
     }
     return;
 };
+
+/*Handlebars.registerHelper("xif", function (expression, options) {
+    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+  });
+Handlebars.registerHelper("x", function (expression, options) {
+  var fn = function(){}, result;
+
+  // in a try block in case the expression have invalid javascript
+  try {
+    // create a new function using Function.apply, notice the capital F in Function
+    fn = Function.apply(
+      this,
+      [
+        'window', // or add more '_this, window, a, b' you can add more params if you have references for them when you call fn(window, a, b, c);
+        'return ' + expression + ';' // edit that if you know what you're doing
+      ]
+    );
+  } catch (e) {
+    console.warn('[warning] {{x ' + expression + '}} is invalid javascript', e);
+  }
+
+  // then let's execute this new function, and pass it window, like we promised
+  // so you can actually use window in your expression
+  // i.e expression ==> 'window.config.userLimit + 10 - 5 + 2 - user.count' //
+  // or whatever
+  try {
+    // if you have created the function with more params
+    // that would like fn(window, a, b, c)
+    result = fn.bind(this)(window);
+  } catch (e) {
+    console.warn('[warning] {{x ' + expression + '}} runtime error', e);
+  }
+  // return the output of that result, or undefined if some error occured
+  return result;
+});*/
+
+Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 Handlebars.registerHelper('share', share);
 Handlebars.registerHelper('strip-scripts', function (context) {
@@ -149,7 +189,7 @@ var app = {
 
     authors: function () {
         var dfd = $.Deferred();
-        $.ajax({
+     authRequest =   $.ajax({
             url: 'http://dwitnews.com/api/get_author_index',
             type: 'GET',
             dataType: 'json',
@@ -239,7 +279,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
 
     },
       page: function (slug) { 
-        $.ajax({
+     pageRequest =   $.ajax({
             url: 'http://dwitnews.com/?json=get_page&slug=' + slug,
             type: 'GET',
             dataType: 'json',
@@ -312,7 +352,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
     // 'reload' parameter not working yet: //github.com/jquery/jquery-mobile/issues/7406
   });*/
             
-            $.ajax({
+   request =         $.ajax({
                 url: jsonURL,
                 type: 'GET',
                 dataType: 'json',
@@ -340,13 +380,13 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                     else {
                         doneLoading();
                         if ((type=='search' && searchFound==true) || type!='search'){
-                        showMessage('There is nothing beyond this that matches your query. Returning to the first page instead.', 3000);
-                        setTimeout(function(){ loading(); page =1; app.get(type, page, arg);}, 3000);
+                        showMessage('There is nothing beyond this that matches your query.', 3000);
+                        setTimeout(function(){ loading(); page =1; history.back();/*app.get(type, page, arg);*/}, 3000);
                         }
                         else {
                             searchFound = false;
                             showMessage('Not found. Please search with a different keyword again.', 1500); 
-                            setTimeout(function(){ $("#popupSearch").popup("open"); }, 2000);   
+                            setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open'); }, 1500);   
                     } 
                     }
                 },

@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var title, searchFound, url, request, authRequest, pageRequest;
+var title, searchFound, url, request, authRequest, pageRequest, id;
 
 this.share = function (name, uri) {
     if (typeof name === 'undefined' || typeof uri === 'undefined') {
@@ -131,6 +131,8 @@ var app = {
         console.log('Received Event: ' + id);
     },
     commentSubmit: function (name, email, comment, id_of_post) {
+        id_of_post = id;
+       console.log("Func: " + id_of_post);
         $.ajax({
             url: 'http://www.dwitnews.com/api/respond/submit_comment/?post_id=' + id_of_post + '&name=' + name + '&email=' + encodeURIComponent(email) + '&content=' + comment,
             type: 'GET',
@@ -243,6 +245,9 @@ var app = {
         var template = Handlebars.compile(source);
         var postData = template(JSON.parse(postDataStorage));
       //  $(".singlewrapper").html("")
+       // console.log(postDataStorage);
+       id = JSON.parse(postDataStorage);
+       id = id.id;
         $(".singlewrapper").html(postData);
                 $('.singlewrapper').trigger("create");
           $("[data-iscroll]").iscrollview(); // First create iscrollview

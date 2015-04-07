@@ -30,15 +30,17 @@ function changeCat(changeTo){
     });
 }
 
-function changePage(changeTo, pageTransition){
+function changePage(changeTo, pageTransition, reloadR){
      if (typeof(pageTransition)==='undefined') pageTransition = 'flow';
+     if (typeof(pageTransition)==='undefined')  reloadR = false;
     $(':mobile-pagecontainer').pagecontainer('change',changeTo, {
                           transition: pageTransition,
         showLoadMsg             : true,
        // changeHash: true,
                         // reverse: false,
                           //changeHash: true,
-        reload:false
+        reload:reloadR
+        
                          // reload:false
                         });
 }

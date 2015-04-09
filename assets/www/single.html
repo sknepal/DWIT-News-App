@@ -262,10 +262,13 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
          // $(this).text("You swiped " + direction ); 
+            console.log(direction);
             if (direction=='right')
-                             $.mobile.activePage.find('#panel-left').panel("open"); 
-            else 
+                $.mobile.activePage.find('#panel-left').panel("open"); 
+            else if (direction=='left')
                 $.mobile.activePage.find('#panel-right').panel("open"); 
+            else if (direction=='up')
+                $("[data-iscroll]").iscrollview("refresh");
         }
       });
     });

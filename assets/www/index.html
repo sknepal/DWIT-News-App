@@ -92,6 +92,10 @@
 
 			<div id="blog-content" data-role="content" class="blog">
 
+                <ul>
+                <li id="test"><a href="testsdf" >adsf</a></li>
+                    <li id="test2"><a href="testsdf" >adsf</a></li>
+                </ul>
 				<div id="blog-data" data-iscroll class="wrapper">
 					<div class="iscroll-pulldown">
 						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
@@ -188,7 +192,53 @@
 				});
 
               
-            
+                 $(function() {      
+      $("#test").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+         // $(this).text("You swiped " + direction ); 
+            console.log(direction);
+            if (direction=='right')
+                $.mobile.activePage.find('#panel-left').panel("open"); 
+            else if (direction=='left')
+                $.mobile.activePage.find('#panel-right').panel("open"); 
+            else if (direction=='up')
+                $("[data-iscroll]").iscrollview("refresh");
+        }
+      });
+    });
+                             $(function() {      
+      $("#home-page-posts li").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+         // $(this).text("You swiped " + direction ); 
+            console.log(direction);
+            if (direction=='right')
+                $.mobile.activePage.find('#panel-left').panel("open"); 
+            else if (direction=='left')
+                $.mobile.activePage.find('#panel-right').panel("open"); 
+            else if (direction=='up')
+                $("[data-iscroll]").iscrollview("refresh");
+        }
+      });
+    });
+                
+                            $(function() {      
+      $("#home-page-posts").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+         // $(this).text("You swiped " + direction ); 
+            console.log(direction);
+            if (direction=='right')
+                $.mobile.activePage.find('#panel-left').panel("open"); 
+            else if (direction=='left')
+                $.mobile.activePage.find('#panel-right').panel("open"); 
+            else if (direction=='up')
+                $("[data-iscroll]").iscrollview("refresh");
+        }
+      });
+    });
+    
     
            /*     $(function() {      
       $("#home-page-posts").swipe( {

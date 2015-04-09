@@ -356,7 +356,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
     reload: true 
     // 'reload' parameter not working yet: //github.com/jquery/jquery-mobile/issues/7406
   });*/
-            
+          //  "<ul class='touch' data-role='listview' data-inset='true' id='" + listview + "' data-dismissible='false'> </ul>");
    request =         $.ajax({
                 url: jsonURL,
                 type: 'GET',
@@ -369,7 +369,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                     var resultData = template(data);
                           // $("#category-page").trigger('pagecreate');
                     //    $(wrap + " .iscroll-content").html();
-                    $(wrap + " .iscroll-content").append("<ul class='touch' data-role='listview' data-inset='true' id='" + listview + "' data-dismissible='false'> </ul>");
+                    $(wrap + " .iscroll-content").append("<ul class='touch' data-role='listview' id='" + listview + "'> </ul>");
                     $(wrap).trigger("create");
                   //  $('#all-posts').listview('refresh');
                     $('#' + listview).html(resultData);

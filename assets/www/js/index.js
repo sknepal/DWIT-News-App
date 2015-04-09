@@ -369,7 +369,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                     var resultData = template(data);
                           // $("#category-page").trigger('pagecreate');
                     //    $(wrap + " .iscroll-content").html();
-                    $(wrap + " .iscroll-content").append("<ul data-role='listview' data-inset='true' id='" + listview + "' data-dismissible='false'> </ul>");
+                    $(wrap + " .iscroll-content").append("<ul class='touch' data-role='listview' data-inset='true' id='" + listview + "' data-dismissible='false'> </ul>");
                     $(wrap).trigger("create");
                   //  $('#all-posts').listview('refresh');
                     $('#' + listview).html(resultData);

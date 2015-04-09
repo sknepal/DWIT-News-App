@@ -111,7 +111,7 @@
                         
                         
   
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown', true);" in-app="true">
+						<li><a href="#" onclick="changePage('single.html?{{@index}}', 'slidedown', true);" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -208,7 +208,7 @@
       });
     });
                              $(function() {      
-      $("#home-page-posts li").swipe( {
+      $("div.ui-page").swipe( {
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
          // $(this).text("You swiped " + direction ); 
@@ -222,8 +222,23 @@
         }
       });
     });
-                
-                            $(function() {      
+                         $(function() {      
+      $("#home-page-posts li.ui-li").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+         // $(this).text("You swiped " + direction ); 
+            console.log(direction);
+            if (direction=='right')
+                $.mobile.activePage.find('#panel-left').panel("open"); 
+            else if (direction=='left')
+                $.mobile.activePage.find('#panel-right').panel("open"); 
+            else if (direction=='up')
+                $("[data-iscroll]").iscrollview("refresh");
+        }
+      });
+    });
+          
+                                       $(function() {      
       $("#home-page-posts").swipe( {
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
@@ -238,6 +253,8 @@
         }
       });
     });
+          
+    
     
     
            /*     $(function() {      

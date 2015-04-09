@@ -24,6 +24,8 @@
 		<!-- Font-Awesome Icons -->
 		<link href="font_awesome/css/font-awesome.min.css" rel="stylesheet">
 		<script src="js/custom.js" type="text/javascript"></script>
+        
+        <script src="js/jquery.touchSwipe.min.js" type="text/javascript"></script>
 		<title>Post</title>
 	</head>
 	<body>
@@ -250,7 +252,23 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
 				}*/
 				//   }, false);
 				//}*/
-
+/*    $('#single-content').swiperight(function() {
+    $.mobile.changePage("#page1");
+});*/
+                
+                
+                $(function() {      
+      $("#single-content").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+         // $(this).text("You swiped " + direction ); 
+            if (direction=='right')
+                             $.mobile.activePage.find('#panel-left').panel("open"); 
+            else 
+                $.mobile.activePage.find('#panel-right').panel("open"); 
+        }
+      });
+    });
 			</script>
 		</div>
 	</body>

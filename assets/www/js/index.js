@@ -292,7 +292,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                 var source = $("#page-template").html();
                 var template = Handlebars.compile(source);
                 var pageData = template(data);
-                   $('.page .iscroll-content').html(pageData);
+                   $('.page .iscroll-content').append(pageData);
         $('.page').trigger('create');
             //  $('#page-data').iscrollview();
                 $('.page').iscrollview("refresh");

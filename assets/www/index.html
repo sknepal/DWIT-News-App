@@ -104,7 +104,10 @@
 					<script id="blog-template" type="text/x-handlebars-template">
 						{{#each posts}}
                         
-                        
+                        {{#ifCond categories.0.slug "news-snippets"}}
+                        <li id="donotshow" style="display:none;"></li>
+                       
+{{else}}
   
 						<li><a href="#" onclick="changePage('single.html?{{@index}}', 'slidedown', true);" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
@@ -118,7 +121,7 @@
 
                         
                        
-
+ {{/ifCond}}
                         
                         
 

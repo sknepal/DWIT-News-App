@@ -143,11 +143,21 @@
 				app.single();
 				$('#single-post-page').one("pageshow", function(event, ui) {
                   
-                    $('#single-data').imagesLoaded( function() {
+                   /* $('#single-data').imagesLoaded( function() {
                          console.log(id);
 $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
   // images have loaded
-})
+})*/
+                    
+                 $('#single-data').imagesLoaded()
+  .progress( function( instance, image ) {
+    var result = image.isLoaded ? 'loaded' : 'broken';
+  if (result=='broken'){          
+      $(image.img).addClass('is-broken');   
+     } 
+  });
+                    
+                    
                     $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");

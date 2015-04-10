@@ -184,21 +184,7 @@
 							data.iscrollview.refresh();
 						}
 					});
-                                        $(function() {      
-      $("#home-page-posts li.ui-li").swipe( {
-        //Generic swipe handler for all directions
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-         // $(this).text("You swiped " + direction ); 
-            console.log(direction);
-            if (direction=='right')
-                $.mobile.activePage.find('#panel-left').panel("open"); 
-            else if (direction=='left')
-                $.mobile.activePage.find('#panel-right').panel("open"); 
-            else if (direction=='up')
-                $("[data-iscroll]").iscrollview("refresh");
-        }
-      });
-    });
+                                    
           
 				});
 
@@ -213,42 +199,10 @@
                 $.mobile.activePage.find('#panel-left').panel("open"); 
             else if (direction=='left')
                 $.mobile.activePage.find('#panel-right').panel("open"); 
-            else if (direction=='up')
-                $("[data-iscroll]").iscrollview("refresh");
         }
       });
     });
-                         $(function() {      
-      $("#home-page-posts li.ui-li").swipe( {
-        //Generic swipe handler for all directions
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-         // $(this).text("You swiped " + direction ); 
-            console.log(direction);
-            if (direction=='right')
-                $.mobile.activePage.find('#panel-left').panel("open"); 
-            else if (direction=='left')
-                $.mobile.activePage.find('#panel-right').panel("open"); 
-            else if (direction=='up')
-                $("[data-iscroll]").iscrollview("refresh");
-        }
-      });
-    });
-          
-                                       $(function() {      
-      $("#home-page-posts").swipe( {
-        //Generic swipe handler for all directions
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-         // $(this).text("You swiped " + direction ); 
-            console.log(direction);
-            if (direction=='right')
-                $.mobile.activePage.find('#panel-left').panel("open"); 
-            else if (direction=='left')
-                $.mobile.activePage.find('#panel-right').panel("open"); 
-            else if (direction=='up')
-                $("[data-iscroll]").iscrollview("refresh");
-        }
-      });
-    });
+                /*
                         $(function() {      
       $("li.ui-li").swipe( {
         //Generic swipe handler for all directions
@@ -259,12 +213,10 @@
                 $.mobile.activePage.find('#panel-left').panel("open"); 
             else if (direction=='left')
                 $.mobile.activePage.find('#panel-right').panel("open"); 
-            else if (direction=='up')
-                $("[data-iscroll]").iscrollview("refresh");
         }
       });
     });
-          
+          */
     
     
     

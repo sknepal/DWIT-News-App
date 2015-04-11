@@ -6,10 +6,14 @@
 	font-style: normal;
 }
 
-/*.is-loading {
+.is-loading {
   background-color: black;
   background-image: url('images/loading.gif');
-}*/
+      width: 120px;
+      background-position: center center;
+  background-repeat: no-repeat;
+    display: block;
+}
 
 .is-broken {
   background-image: url('images/broken.png');
@@ -26,10 +30,10 @@
 }
 
 img{
-    background: url('images/loading.gif') no-repeat;
-      background-color: black;
-    background-position: center center;
-    background-repeat: no-repeat;
+   background: url('images/loading.gif') no-repeat;
+   background-color: black;
+   background-position: center center;
+   background-repeat: no-repeat;
     -webkit-transition: opacity 0.4s;
      -moz-transition: opacity 0.4s;
       -ms-transition: opacity 0.4s;

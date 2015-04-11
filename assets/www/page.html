@@ -90,14 +90,58 @@
         </div>
       <script>   $('#pages').one("pageshow",function(event, ui){
   
-                 $('#page-data').imagesLoaded()
-  .progress( function( instance, image ) {
+   // $('#page-data img').addClass('is-loading');
+            
+                    var imgLoad = imagesLoaded('#page-data');
+imgLoad.on( 'always', function() {
+//  console.log( imgLoad.images.length + ' images loaded' );
+  // detect which image is broken
+  for ( var i = 0, len = imgLoad.images.length; i < len; i++ ) {
+    var image = imgLoad.images[i];
     var result = image.isLoaded ? 'loaded' : 'broken';
-  if (result=='broken'){          
+      
+      if (result=='broken'){          
+           console.log( 'broken'  + image.img.src );
       $(image.img).addClass('is-broken');   
      } 
+     else {
+          console.log( 'not broken: ' + image.img.src );
+        $(image.img).css({
+            'background': '',
+   'background-color': ''
   });
+         
+         console.log(image.img);
+     }
+   // console.log( 'image is ' + result + ' for ' + image.img.src );
+  }
+});
+    /*$('#page-data img').imagesLoaded(function($images, $proper, $broken) {
+    console.log($broken);
+        console.log($images);
+        console.log($proper);
+});
+    */
+/*     var imgLoad = imagesLoaded('#page-data');
+imgLoad.on( 'always', function() {
+  console.log( imgLoad.images.length + ' images loaded' );
+  // detect which image is broken
+  for ( var i = 0, len = imgLoad.images.length; i < len; i++ ) {
+    var image = imgLoad.images[i];
+      image.addClass('is-loading');
+    var result = image.isLoaded ? 'loaded' : 'broken';
+    console.log( 'image is ' + result + ' for ' + image.img.src );
+    if (result == 'broken') $(image.img).addClass('is-broken');
     
+       //$(image.img).addClass('is-loading');
+  }
+});*/
+    /*imgLoad.on( 'progress', function( instance, image ) {
+ var result2 = image.isLoaded ? 'loaded' : 'broken';
+  //console.log( 'image is ' + result + ' for ' + image.img.src );
+        if (result2!=false)
+      $(image.img).addClass('is-loading');
+});*/
   // Handler for .ready() called.
     
             $.mobile.activePage.find('#panel-left').on("click", function () {

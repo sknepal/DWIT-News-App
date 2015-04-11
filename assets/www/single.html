@@ -142,22 +142,75 @@
 			<script type="text/javascript">
 				app.single();
 				$('#single-post-page').one("pageshow", function(event, ui) {
-                  
+                    
+                    var imgLoad = imagesLoaded('#single-data');
+imgLoad.on( 'always', function() {
+//  console.log( imgLoad.images.length + ' images loaded' );
+  // detect which image is broken
+  for ( var i = 0, len = imgLoad.images.length; i < len; i++ ) {
+    var image = imgLoad.images[i];
+    var result = image.isLoaded ? 'loaded' : 'broken';
+      
+      if (result=='broken'){          
+           console.log( 'broken'  + image.img.src );
+      $(image.img).addClass('is-broken');   
+     } 
+     else {
+          console.log( 'not broken: ' + image.img.src );
+        $(image.img).css({
+            'background': '',
+   'background-color': ''
+  });
+         
+         console.log(image.img);
+     }
+   // console.log( 'image is ' + result + ' for ' + image.img.src );
+  }
+});
+                    
+  /*                  
+               $('#single-data').imagesLoaded()
+  .always( function( instance ) {
+ for ( var i = 0, len = this.images.length; i < len; i++ ) {
+    var image = this.images[i];
+    var result = image.isLoaded ? 'loaded' : 'broken';
+  if (result=='broken'){          
+      $(image.img).addClass('is-broken');   
+     } 
+     else {
+        $(image.img).css({
+            'background': 'none',
+   'background-color': ''
+  });
+     }
+ }
+              });    */ 
                    /* $('#single-data').imagesLoaded( function() {
                          console.log(id);
 $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
   // images have loaded
 })*/
                     
-                 $('#single-data').imagesLoaded()
+    /*            $('#single-data').imagesLoaded()
   .progress( function( instance, image ) {
     var result = image.isLoaded ? 'loaded' : 'broken';
   if (result=='broken'){          
-      $(image.img).addClass('is-broken');   
+      image.img.src = "";
+      image.img.src = "css/images/broken.png"; 
      } 
-  });
-                    
-                    
+  });*/
+                 /*   var imgLoad = imagesLoaded('#single-data');
+imgLoad.on( 'always', function() {
+  console.log( imgLoad.images.length + ' images loaded' );
+  // detect which image is broken
+  for ( var i = 0, len = imgLoad.images.length; i < len; i++ ) {
+    var image = imgLoad.images[i];
+    var result = image.isLoaded ? 'loaded' : 'broken';
+    console.log( 'image is ' + result + ' for ' + image.img.src );
+      if (result == 'broken') $(image.img).addClass('is-broken');
+  }
+});*/
+                      /*   function checkImages(imgs) { $(imgs).each(function() { $(imgs).imagesLoaded() .progress(function(instance, image) { if(image.isLoaded == false) { console.log(image.img.src + ' could not be found.'); image.img.src = "/templates/img/no-image.jpg"; } }); }); } */
                     $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");

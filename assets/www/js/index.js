@@ -110,6 +110,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+         document.addEventListener("deviceready", initPushwoosh, true);
     },
     // deviceready Event Handler
     //

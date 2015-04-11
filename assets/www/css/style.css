@@ -30,10 +30,10 @@
 }
 
 img{
-   background: url('images/loading.gif') no-repeat;
+ /*  background: url('images/loading.gif') no-repeat;
    background-color: black;
    background-position: center center;
-   background-repeat: no-repeat;
+   background-repeat: no-repeat;*/
     -webkit-transition: opacity 0.4s;
      -moz-transition: opacity 0.4s;
       -ms-transition: opacity 0.4s;

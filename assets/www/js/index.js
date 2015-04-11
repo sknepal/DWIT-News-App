@@ -105,11 +105,11 @@ var pushNotification = window.plugins.pushNotification;
 if(device.platform == "Android")
 {
 registerPushwooshAndroid();
-}
+}/*
 if(device.platform == "iPhone" || device.platform == "iOS")
 {
 registerPushwooshIOS();
-}
+}*/
 }
 
 var app = {

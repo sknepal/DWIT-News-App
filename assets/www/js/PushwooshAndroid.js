@@ -37,9 +37,9 @@ function registerPushwooshAndroid() {
 			}
 
 			//and show alert
-        navigator.notification.alert(userData, alertDismissed, title);
-			alert(title);
-alert(userData);
+        navigator.notification.alert(title, alertDismissed, 'DWIT News');
+			//alert(title);
+//alert(userData);
 			//stopping geopushes
 			//pushNotification.stopGeoPushes();
 		}
@@ -58,7 +58,7 @@ alert(userData);
 		},
 		function(status)
 		{
-			alert("failed to register: " +  status);
+			console.warn("failed to register: " +  status);
 		    console.warn(JSON.stringify(['failed to register ', status]));
 		}
 	);

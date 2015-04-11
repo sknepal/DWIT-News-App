@@ -45,12 +45,12 @@ permission on your app, which PhoneGap requires.
 <!--
 <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 -->
-     <gap:plugin name="org.apache.cordova.vibration" />
+     
     <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
       <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" source="plugins.cordova.io" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.vibration" />
   
 <!-- Define app icon for each platform. -->
     

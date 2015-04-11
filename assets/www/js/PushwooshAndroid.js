@@ -16,6 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+function alertDismissed() {
+    // do something
+}
 
 function registerPushwooshAndroid() {
 
@@ -34,8 +37,9 @@ function registerPushwooshAndroid() {
 			}
 
 			//and show alert
+        navigator.notification.alert(userData, alertDismissed, title);
 			alert(title);
-
+alert(userData);
 			//stopping geopushes
 			//pushNotification.stopGeoPushes();
 		}

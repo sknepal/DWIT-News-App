@@ -106,7 +106,7 @@ function onPushwooshAndroidInitialized(pushToken)
 	//pushNotification.setSingleNotificationMode();
 	
 	//disable sound and vibration
-	//pushNotification.setSoundType(1);
+	pushNotification.setSoundType(2);
 	//pushNotification.setVibrateType(1);
 	
 	pushNotification.setLightScreenOnNotification(false);

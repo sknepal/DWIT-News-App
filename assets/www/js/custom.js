@@ -6,6 +6,7 @@ $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");
   });   
 
+/*
 
 function initPushwoosh()
 {
@@ -46,6 +47,7 @@ document.addEventListener('push-notification', function(event) {
 	alert(title);
 });
 
+*/
 
 function loading() {
     $.mobile.loading('show', {

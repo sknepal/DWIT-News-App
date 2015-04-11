@@ -24,6 +24,8 @@
             <script src="js/pull.js" type="text/javascript"></script>
         <script src="js/custom.js" type="text/javascript"></script>
     
+        <script src="js/jquery.touchSwipe.min.js" type="text/javascript"></script>
+    
   <title>Page</title>
 </head>
 <body>
@@ -91,7 +93,7 @@
       <script>   $('#pages').one("pageshow",function(event, ui){
   
    // $('#page-data img').addClass('is-loading');
-            
+            /*
                     var imgLoad = imagesLoaded('#page-data');
 imgLoad.on( 'always', function() {
 //  console.log( imgLoad.images.length + ' images loaded' );
@@ -115,7 +117,7 @@ imgLoad.on( 'always', function() {
      }
    // console.log( 'image is ' + result + ' for ' + image.img.src );
   }
-});
+});*/
     /*$('#page-data img').imagesLoaded(function($images, $proper, $broken) {
     console.log($broken);
         console.log($images);
@@ -204,6 +206,19 @@ $("#panel-left").on("click", function () {
     $("body").find("a").unbind("click");
 });
           
+                             $(function() {      
+      $("div.ui-page").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+         // $(this).text("You swiped " + direction ); 
+            console.log(direction);
+            if (direction=='right')
+                $.mobile.activePage.find('#panel-left').panel("open"); 
+            else if (direction=='left')
+                $.mobile.activePage.find('#panel-right').panel("open"); 
+        }
+      });
+    });
   </script>
   </div>
 

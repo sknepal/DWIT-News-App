@@ -101,6 +101,7 @@
 					<div class="iscroll-pulldown">
 						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
 					</div>
+                    <div class="scrollwrap"></div>
 <!--{{#ifCond categories.0.slug "news-snippets"}}
                        
 {{else}}
@@ -211,6 +212,13 @@
         }
       });
     });
+                
+              /*   	$(document).on("pagebeforehide","#home-page",function(){ // When leaving pagetwo
+                     
+   $("body").find("*").removeAttr("disabled");
+    $("body").find("a").unbind("click");
+});
+                */
                 /*
                         $(function() {      
       $("li.ui-li").swipe( {

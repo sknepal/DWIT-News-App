@@ -275,6 +275,10 @@ ul li h3 {
 .awrapper, .awrapper div.iscroll-scroller {
 	width: 100% !important;
 }
+
+.swrapper, .swrapper div.iscroll-scroller {
+	width: 100% !important;
+}
 /*
  .pwrapper, .pwrapper div.iscroll-scroller {
  width: 100% !important;

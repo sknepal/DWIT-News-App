@@ -384,14 +384,15 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                     var resultData = template(data);
                           // $("#category-page").trigger('pagecreate');
                     //    $(wrap + " .iscroll-content").html();
-                    $(wrap + " .iscroll-content").append("<ul class='touch' data-role='listview' id='" + listview + "'> </ul>");
+                 //       $(wrap + " .iscroll-content").append("");
+                    $(wrap + " .scrollwrap").html("<ul class='touch' data-role='listview' id='" + listview + "'> </ul>");
                     $(wrap).trigger("create");
                   //  $('#all-posts').listview('refresh');
                     $('#' + listview).html(resultData);
                     $('#' + listview).listview('refresh');
-                    $( wrap).iscrollview("resizeWrapper");
-                    $(wrap).iscrollview("refresh");
-                     
+                 //   $( wrap).iscrollview("resizeWrapper");
+                 //  $(wrap).iscrollview("refresh");
+                     $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
                     doneLoading();
                         
                        // pageContainerElement.page({ domCache: true });
@@ -420,8 +421,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
         getPosts().then(function (data) {
             var post;
             //   localStorage.removeItem("postData");
-            $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
-             
+           // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
+             $(document).on('click', '#' + $.mobile.activePage.attr('id') + '-posts' + ' li', function (e) {
                 if ($.mobile.activePage[0].id == 'home-page'){
                   post = 'indexPostData';
                 }

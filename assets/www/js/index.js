@@ -420,7 +420,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
         getPosts().then(function (data) {
             var post;
             //   localStorage.removeItem("postData");
-            $('#' + $.mobile.activePage.attr('id') + '-posts').on('click', 'li', function (e) {
+            $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
              
                 if ($.mobile.activePage[0].id == 'home-page'){
                   post = 'indexPostData';

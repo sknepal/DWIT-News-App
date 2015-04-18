@@ -403,7 +403,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                           // $("#category-page").trigger('pagecreate');
                     //    $(wrap + " .iscroll-content").html();
                  //       $(wrap + " .iscroll-content").append("");
-                    $(wrap + " .scrollwrap").html("<ul class='touch' data-role='listview' id='" + listview + "'> </ul>");
+                    $(wrap + " .scrollwrap").html("<ul data-role='listview' id='" + listview + "'> </ul>");
                     $(wrap).trigger("create");
                   //  $('#all-posts').listview('refresh');
                     $('#' + listview).html(resultData);

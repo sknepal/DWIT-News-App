@@ -306,11 +306,11 @@ ul li h3 {
 .page div.iscroll-scroller {
 	width: 100% !important;
 }
-.singlewrapper {
+/*.singlewrapper {
 	height: auto;
 	width: auto;
     padding: 15px;
-}
+}*/
 .ui-listview {
 	margin: 0 !important;
     padding: 15px;

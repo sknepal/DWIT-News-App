@@ -272,7 +272,7 @@ var app = {
         console.log(postDataLocation + "single");
         
         var postDataStorage = localStorage.getItem(postDataLocation);
-          alert(postDataStorage + "get item succeeded");
+    //     alert(postDataStorage + "get item succeeded");
          console.log(postDataStorage + "get item succeeded");
         var source = $("#single-template").html();
         var template = Handlebars.compile(source);

@@ -146,10 +146,10 @@
                     
                 });
                                 
-				$(document).one("pageshow", '#single-post-page', function(event, ui) {
-                    app.single();
-				//$('#single-post-page').one("pageshow", function(event, ui) {
-                    
+			/*	$(document).one("pageshow", '#single-post-page', function(event, ui) {
+                 */ 
+				$('#single-post-page').one("pageshow", function(event, ui) {
+                      app.single();
                  /*   var imgLoad = imagesLoaded('#single-data');
 imgLoad.on( 'always', function() {
 //  console.log( imgLoad.images.length + ' images loaded' );

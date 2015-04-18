@@ -253,9 +253,10 @@ var app = {
                     parent.history.back();
                     return;
          }
-             
+               alert(postDataLocation + "single");
         
         var postDataStorage = localStorage.getItem(postDataLocation);
+          alert(postDataStorage + "get item succeeded");
         var source = $("#single-template").html();
         var template = Handlebars.compile(source);
         var postData = template(JSON.parse(postDataStorage));
@@ -422,7 +423,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
             var post;
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
-             $(document).on('click', '#' + $.mobile.activePage.attr('id') + '-posts' + ' li', function (e) {
+             $(document).on('click', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
+                 alert($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){
                   post = 'indexPostData';
                 }
@@ -436,7 +438,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                                 post = 'authorPostData';
                         }
     
-                
+                  alert(post + " storage location");
                 localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
                   // $( "#category-page" ).page( 'option', 'domCache', true );
  

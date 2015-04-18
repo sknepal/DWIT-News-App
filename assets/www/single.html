@@ -139,9 +139,16 @@
 				</div>
 			</div>
 
-			<script type="text/javascript">
-				app.single();
-				$('#single-post-page').one("pageshow", function(event, ui) {
+			<script type="text/javascript">	
+                $(document).one("pagebeforeshow", '#single-post-page', function(event, ui) {
+                  singlePostClickLocation = ui.prevPage.attr('id');
+                    // 
+                    
+                });
+                                
+				$(document).one("pageshow", '#single-post-page', function(event, ui) {
+                    app.single();
+				//$('#single-post-page').one("pageshow", function(event, ui) {
                     
                  /*   var imgLoad = imagesLoaded('#single-data');
 imgLoad.on( 'always', function() {
@@ -273,13 +280,13 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                
                      $(document).delegate("#single-post-page", "pageinit", function(event){
 
-        
+   
                          
                          setTimeout(function() {
 						$('#single-content').iscrollview("refresh");
 					}, 500);
          $("#single-content").iscrollview("refresh");
-      $("#single-content").updatelayout;
+   //   $("#single-content").updatelayout;
 });
 				
                 

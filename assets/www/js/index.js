@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var title, searchFound, url, request, authRequest, pageRequest, id;
+var title, searchFound, url, request, authRequest, pageRequest, id, singlePostClickLocation;
 
 this.share = function (name, uri) {
     if (typeof name === 'undefined' || typeof uri === 'undefined') {
@@ -237,7 +237,8 @@ var app = {
 
     single: function () {
         var postDataLocation;
-         if ($.mobile.activePage[0].id == 'home-page'){
+        console.log("WHERE: " + singlePostClickLocation);
+      /*   if ($.mobile.activePage[0].id == 'home-page'){
                   postDataLocation = 'indexPostData';
          }
                   else if ($.mobile.activePage[0].id == 'category-page'){
@@ -248,12 +249,26 @@ var app = {
                     }
                         else if ($.mobile.activePage[0].id == 'authorposts-page'){
                                 postDataLocation = 'authorPostData';
+                        }*/
+   //     singlePostClickLocation
+        if (singlePostClickLocation == 'home-page'){
+                  postDataLocation = 'indexPostData';
+         }
+                  else if (singlePostClickLocation == 'category-page'){
+                           postDataLocation = 'categoryPostData';
+                  }
+                    else if(singlePostClickLocation == 'search-page'){
+                            postDataLocation = 'searchPostData';
+                    }
+                        else if (singlePostClickLocation == 'authorposts-page'){
+                                postDataLocation = 'authorPostData';
                         }
+        
          else {
                     parent.history.back();
                     return;
          }
-               alert(postDataLocation + "single");
+          //     alert(postDataLocation + "single");
         console.log(postDataLocation + "single");
         
         var postDataStorage = localStorage.getItem(postDataLocation);
@@ -427,7 +442,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
              $(document).on('tap', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
-                 alert($.mobile.activePage[0].id + " starting");
+             //    alert($.mobile.activePage[0].id + " starting");
                  console.log($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){
                   post = 'indexPostData';
@@ -442,7 +457,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                                 post = 'authorPostData';
                         }
     
-                  alert(post + " storage location");
+               //   alert(post + " storage location");
                   console.log(post + " storage location");
                 localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
                   // $( "#category-page" ).page( 'option', 'domCache', true );

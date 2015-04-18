@@ -107,7 +107,7 @@
 {{else}}
                     {{/ifCond}}-->
                         
-                        
+                       <!-- //onclick="changePage('single.html?{{@index}}', 'slidedown', true);" -->
 					<script id="blog-template" type="text/x-handlebars-template">
 						{{#each posts}}
                         
@@ -115,8 +115,8 @@
                         <li id="donotshow" style="display:none;"></li>
                        
 {{else}}
-  
-						<li><a href="#" onclick="changePage('single.html?{{@index}}', 'slidedown', true);" in-app="true">
+   
+						<li><a href="single.html?{{@index}}"in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>

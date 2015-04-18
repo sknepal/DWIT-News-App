@@ -426,7 +426,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
              console.log( "on click");
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
-             $(document).on('click', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
+             $(document).on('tap', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
                  alert($.mobile.activePage[0].id + " starting");
                  console.log($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){

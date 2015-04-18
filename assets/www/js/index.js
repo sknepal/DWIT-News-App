@@ -254,9 +254,11 @@ var app = {
                     return;
          }
                alert(postDataLocation + "single");
+        console.log(postDataLocation + "single");
         
         var postDataStorage = localStorage.getItem(postDataLocation);
           alert(postDataStorage + "get item succeeded");
+         console.log(postDataStorage + "get item succeeded");
         var source = $("#single-template").html();
         var template = Handlebars.compile(source);
         var postData = template(JSON.parse(postDataStorage));
@@ -421,10 +423,12 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
         };
         getPosts().then(function (data) {
             var post;
+             console.log( "on click");
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
              $(document).on('click', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
                  alert($.mobile.activePage[0].id + " starting");
+                 console.log($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){
                   post = 'indexPostData';
                 }
@@ -439,6 +443,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                         }
     
                   alert(post + " storage location");
+                  console.log(post + " storage location");
                 localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
                   // $( "#category-page" ).page( 'option', 'domCache', true );
  

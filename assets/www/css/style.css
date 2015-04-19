@@ -246,16 +246,18 @@ body > div.snap-drawers > div.snap-drawer.snap-drawer-left > div > ul > li.home 
 }
 
 /* Show "Left" drawer for the "Right" drawer in the demo */
-.snapjs-right .snap-drawer-left {
+/*.snapjs-right .snap-drawer-left {
     display: block;
     right: 0;
     left: auto;
-}
+}*/
 
 /* Hide the actual "Right" drawer in the demo */
+/*
 .snapjs-right .snap-drawer-right {
     display: none;
 }
+*/
 
 #home-page{
     backface-visibility:hidden;

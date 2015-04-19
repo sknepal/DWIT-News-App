@@ -133,9 +133,10 @@ this.next = function (where, arg) {
  
 
 function handleError(xhr, textStatus, errorThrown) {
-console.log(xhr);
-    console.log(textStatus);
-    console.log(errorThrown);
+if (errorThrown == 'abort') return false;
+//console.log(xhr);
+  //  console.log(textStatus);
+    //console.log(errorThrown);
     var errorMessage = setInterval(function () {
         $.mobile.loading('show', {
             theme: "b",

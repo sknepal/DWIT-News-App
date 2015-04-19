@@ -32,7 +32,7 @@ document.addEventListener('click', function (e) {
     }
     */
 click_time = e['timeStamp'];
-if (click_time && (click_time - last_click_time) < 500) {
+if (click_time && (click_time - last_click_time) < 300) {
 e.stopImmediatePropagation();
 e.preventDefault();
 return false;

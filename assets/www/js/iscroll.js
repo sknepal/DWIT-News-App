@@ -10,13 +10,27 @@
 // http://stackoverflow.com/questions/14982864/phonegap-2-4-0-with-android-4-2-strange-double-click-behaviour
 //
 //--------------------------------------------------------------------------------------------------------------
-
+/*function checkDOMChange()
+{*/
 var last_click_time = new Date().getTime();
-var commentExists = document.getElementById("commentslist");
+/*var commentExists = document.getElementById("commentslist");
 console.log(commentExists);
 if (commentExists){
-    console.log("Exists");
-commentExists.addEventListener('click', function (e) {
+    console.log("Exists");*/
+document.addEventListener('click', function (e) {
+   // console.log(e.target.className);
+   // console.log(e.id);
+   /*   var t = e.target;
+    console.log("Target: " + t);
+    console.log("NodeName: "+ t.nodeName);
+    while(t && t.nodeName != "TAG") { // note, must be uppercase
+        t = t.parentNode;
+        console.log("Parent Node: " + t);
+    }
+    if(t) {
+        console.log("You clicked on #"+t.id);
+    }
+    */
 click_time = e['timeStamp'];
 if (click_time && (click_time - last_click_time) < 500) {
 e.stopImmediatePropagation();
@@ -25,7 +39,9 @@ return false;
 }
 last_click_time = click_time;
 }, true);
-}
+/*}
+    setTimeout( checkDOMChange, 200 );*/
+
 
 (function(window, doc){
 var m = Math,

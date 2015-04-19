@@ -237,7 +237,7 @@ var app = {
 
     single: function () {
         var postDataLocation;
-      alert("WHERE: " + singlePostClickLocation);
+    //  alert("WHERE: " + singlePostClickLocation);
          if ($.mobile.activePage[0].id == 'home-page'){
                   postDataLocation = 'indexPostData';
          }
@@ -269,7 +269,7 @@ var app = {
                     return;
          }
           //     alert(postDataLocation + "single");
-        console.log(postDataLocation + "single");
+    //    console.log(postDataLocation + "single");
         
         var postDataStorage = localStorage.getItem(postDataLocation);
     //     alert(postDataStorage + "get item succeeded");
@@ -411,8 +411,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                  //   $( wrap).iscrollview("resizeWrapper");
                   $(wrap).iscrollview("refresh");
                      $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
-                        alert(resultData);
-                        console.log(resultData);
+               //         alert(resultData);
+                  //      console.log(resultData);
                     doneLoading();
                         
                        // pageContainerElement.page({ domCache: true });
@@ -440,12 +440,12 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
         };
         getPosts().then(function (data) {
             var post;
-             alert( "on click");
+        //     alert( "on click");
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
              $(document).on('tap', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
              //    alert($.mobile.activePage[0].id + " starting");
-                 console.log($.mobile.activePage[0].id + " starting");
+           //      console.log($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){
                   post = 'indexPostData';
                 }
@@ -458,8 +458,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                         else if ($.mobile.activePage[0].id== 'authorposts-page'){
                                 post = 'authorPostData';
                         }
-    alert(post + " storage location");
-                  console.log(post + " storage location");
+  //  alert(post + " storage location");
+    //              console.log(post + " storage location");
                 localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
                    
                   // $( "#category-page" ).page( 'option', 'domCache', true );

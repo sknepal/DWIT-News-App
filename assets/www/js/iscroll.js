@@ -12,7 +12,11 @@
 //--------------------------------------------------------------------------------------------------------------
 
 var last_click_time = new Date().getTime();
-document.addEventListener('click', function (e) {
+var commentExists = document.getElementById("commentslist");
+console.log(commentExists);
+if (commentExists){
+    console.log("Exists");
+commentExists.addEventListener('click', function (e) {
 click_time = e['timeStamp'];
 if (click_time && (click_time - last_click_time) < 500) {
 e.stopImmediatePropagation();
@@ -21,7 +25,7 @@ return false;
 }
 last_click_time = click_time;
 }, true);
-
+}
 
 (function(window, doc){
 var m = Math,

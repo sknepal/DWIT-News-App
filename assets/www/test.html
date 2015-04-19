@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+
+
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/snap.css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="js/snap.min.js" type="application/javascript"></script>
+      <!--  <script type="text/javascript" src="PushNotification.js"></script>-->
+        <style>#content {
+	background: #BFC7D8;
+  z-index: 1;
+}</style>
+      
+		<!-- Font-Awesome Icons -->
+		<!--<link href="font_awesome/css/font-awesome.min.css" rel="stylesheet">-->
+
+		<title>DWIT News</title>
+	</head>
+
+<body>
+<!-- Snap Js Code Comes Here -->
+	<div class="snap-drawers">
+		<div class="snap-drawer snap-drawer-left">
+			<div>
+				<ul>
+					<li><a href="default.html">Default</a></li>
+					<li><a href="noDrag.html">No Drag</a></li>
+					<li><a href="dragElement.html">Drag Element</a></li>
+					<li><a href="rightDisabled.html">Right Disabled</a></li>
+					<li><a href="hyperextend.html">Hyperextension Disabled</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="snap-drawer snap-drawer-right">
+			<ul>
+				<li><a href="default.html">Default</a></li>
+				<li><a href="noDrag.html">No Drag</a></li>
+				<li><a href="dragElement.html">Drag Element</a></li>
+				<li><a href="rightDisabled.html">Right Disabled</a></li>
+			</ul>
+		</div>
+	</div>
+<!-- Jquery Mobile Code Comes Here -->
+	<div data-role="page" id="content">
+		<div data-role="header" data-position="fixed">
+			<h4>&copy; Test App</h4>
+		</div>
+		<div role="main" class="ui-content">
+			Some Page Content
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4>&copy; Test App</h4>
+		</div>
+        <script>
+          var snapper = new Snap({
+	element: document.getElementById('content')
+});
+        </script>
+	</div>
+</body>
+</html>

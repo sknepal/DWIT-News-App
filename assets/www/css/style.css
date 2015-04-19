@@ -241,6 +241,10 @@ ul li h3 {
 	content: '\e84A';
 }
 
+body > div.snap-drawers > div.snap-drawer.snap-drawer-left > div > ul > li.home > a:before{
+    content: '\e84A';
+}
+
 /*
 .icon:before {
   display: inline-block;
@@ -285,7 +289,10 @@ ul li h3 {
 
  }
  */
-
+#home-page {
+	background: #BFC7D8;
+  z-index: 1;
+}
 .comment img {
 	width: auto;
 	height: auto;

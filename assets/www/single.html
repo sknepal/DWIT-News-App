@@ -111,7 +111,7 @@
 						<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value);">
 						<label><i class="fa fa-user"></i>&nbsp;Name </label>
 						<input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
-						<label <i class="fa fa-envelope"></i>&nbsp; Email </label>
+						<label>&nbsp; Email </label>
 						<input type = "email" id = "email" value = "" required />
 						<label><i class="fa fa-pencil-square-o"></i>&nbsp;Comment </label>
 						<textarea cols="40" rows="8" pattern=".{20,}" required title="20 characters minimum" id="comment"></textarea>
@@ -144,10 +144,9 @@
                   singlePostClickLocation = ui.prevPage.attr('id');
                     // 
                     
-                });*/
-                      app.single();            
+                });*/          
 	//$(document).one("pageshow", '#single-post-page', function(event, ui) {
-                 
+                  app.single();
 				$('#single-post-page').one("pageshow", function(event, ui) {
                     
                  /*   var imgLoad = imagesLoaded('#single-data');

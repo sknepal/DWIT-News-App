@@ -441,7 +441,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
              console.log( "on click");
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
-             $(document).on('tap', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
+             $(document).on('vclick', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
              //    alert($.mobile.activePage[0].id + " starting");
                  console.log($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){
@@ -460,14 +460,20 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                //   alert(post + " storage location");
                   console.log(post + " storage location");
                 localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
+                   
                   // $( "#category-page" ).page( 'option', 'domCache', true );
  
               //  if ($.mobile.activePage.attr('id') == 'category-page') viewed = true;
             });
             
+                     
         });
+           
     }
-};/*
+    
+};
+
+/*
 
 func: function (type, jsonURL){
     if (type!='search') { return 1; }

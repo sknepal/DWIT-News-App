@@ -108,7 +108,7 @@
 						</div>
 
 						<div data-role="popup" id="popupComment" class="ui-content" data-theme="a">
-						<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value);" target="_blank">
+						<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value);">
 						<label><i class="fa fa-user"></i>&nbsp;Name </label>
 						<input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
 						<label <i class="fa fa-envelope"></i>&nbsp; Email </label>
@@ -140,16 +140,16 @@
 			</div>
 
 			<script type="text/javascript">	
-                $(document).one("pagebeforeshow", '#single-post-page', function(event, ui) {
+         /*       $(document).one("pagebeforeshow", '#single-post-page', function(event, ui) {
                   singlePostClickLocation = ui.prevPage.attr('id');
                     // 
                     
-                });
-                                
-			/*	$(document).one("pageshow", '#single-post-page', function(event, ui) {
-                 */ 
+                });*/
+                      app.single();            
+	//$(document).one("pageshow", '#single-post-page', function(event, ui) {
+                 
 				$('#single-post-page').one("pageshow", function(event, ui) {
-                      app.single();
+                    
                  /*   var imgLoad = imagesLoaded('#single-data');
 imgLoad.on( 'always', function() {
 //  console.log( imgLoad.images.length + ' images loaded' );

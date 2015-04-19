@@ -237,8 +237,8 @@ var app = {
 
     single: function () {
         var postDataLocation;
-        console.log("WHERE: " + singlePostClickLocation);
-      /*   if ($.mobile.activePage[0].id == 'home-page'){
+      //  console.log("WHERE: " + singlePostClickLocation);
+         if ($.mobile.activePage[0].id == 'home-page'){
                   postDataLocation = 'indexPostData';
          }
                   else if ($.mobile.activePage[0].id == 'category-page'){
@@ -249,9 +249,9 @@ var app = {
                     }
                         else if ($.mobile.activePage[0].id == 'authorposts-page'){
                                 postDataLocation = 'authorPostData';
-                        }*/
+                        }
    //     singlePostClickLocation
-        if (singlePostClickLocation == 'home-page'){
+     /*   if (singlePostClickLocation == 'home-page'){
                   postDataLocation = 'indexPostData';
          }
                   else if (singlePostClickLocation == 'category-page'){
@@ -262,7 +262,7 @@ var app = {
                     }
                         else if (singlePostClickLocation == 'authorposts-page'){
                                 postDataLocation = 'authorPostData';
-                        }
+                        }*/
         
          else {
                     parent.history.back();

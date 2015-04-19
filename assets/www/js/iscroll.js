@@ -2,6 +2,26 @@
  * iScroll v4.2 ~ Copyright (c) 2012 Matteo Spinelli, http://cubiq.org
  * Released under MIT license, http://cubiq.org/license
  */
+//--------------------------------------------------------------------------------------------------------------
+//
+// Doubleclick fix for Androids 4.2x where a single tap results
+// in a double tap | click
+// Solution found here:
+// http://stackoverflow.com/questions/14982864/phonegap-2-4-0-with-android-4-2-strange-double-click-behaviour
+//
+//--------------------------------------------------------------------------------------------------------------
+
+var last_click_time = new Date().getTime();
+document.addEventListener('click', function (e) {
+click_time = e['timeStamp'];
+if (click_time && (click_time - last_click_time) < 500) {
+e.stopImmediatePropagation();
+e.preventDefault();
+return false;
+}
+last_click_time = click_time;
+}, true);
+
 
 (function(window, doc){
 var m = Math,

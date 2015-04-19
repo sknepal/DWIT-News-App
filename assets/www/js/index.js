@@ -30,6 +30,9 @@ this.share = function (name, uri) {
     return;
 };
 
+
+
+
 /*Handlebars.registerHelper("xif", function (expression, options) {
     return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
   });
@@ -273,7 +276,7 @@ var app = {
         
         var postDataStorage = localStorage.getItem(postDataLocation);
     //     alert(postDataStorage + "get item succeeded");
-         console.log(postDataStorage + "get item succeeded");
+   //      console.log(postDataStorage + "get item succeeded");
         var source = $("#single-template").html();
         var template = Handlebars.compile(source);
         var postData = template(JSON.parse(postDataStorage));

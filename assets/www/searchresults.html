@@ -28,7 +28,7 @@
 		<title>Search Results</title>
 	</head>
 	<body>
-		<div class="hwrapper" data-role="page" id="search-page">
+		<div class="hwrapper" data-role="page" id="search-page" data-dom-cache="true">
 			<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
 				<ul>
 					<li class="home">
@@ -46,7 +46,7 @@
 					</li>
 
 					<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val());searchFound=null;" target="_blank">
+						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'flow');searchFound=null;">
 							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search for..." autofocus/>
 
 						</form>
@@ -180,8 +180,17 @@
         }
       });
     });
-
-			</script>
+/*$('#search-page').on('pagehide', function () {
+   // if (!($.mobile.activePage[0].id)=='single-post-page')
+   $(this).remove();
+});*/
+                $(document).on("pagehide","#search-page",function(){ 
+                    if (($.mobile.activePage[0].id)!='single-post-page') $(this).remove();
+                    });
+   /*             $('#search-page').one('pageshow', "div:jqmData(role='page')", function(event, ui){
+    $(ui.prevPage).remove();
+});
+		*/	</script>
 		</div>
 
 	</body>

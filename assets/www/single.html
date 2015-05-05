@@ -341,6 +341,10 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
         }
       });
     });
+                  $('#single-post-page').on('pagehide', function () {
+       $('#popupComment-popup').remove();
+                           $('#popupComment-screen').remove();
+    });
 			</script>
 		</div>
 	</body>

@@ -79,13 +79,15 @@ function changePage(changeTo, pageTransition, reloadR){
     $(':mobile-pagecontainer').pagecontainer('change',changeTo, {
                           transition: pageTransition,
         showLoadMsg             : true,
-       // changeHash: true,
+       //changeHash: true,
                         // reverse: false,
                           //changeHash: true,
         reload:reloadR
+      //  reloadPage:reloadR
         
                          // reload:false
                         });
+    console.log(reloadR);
 }
 
 

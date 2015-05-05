@@ -241,30 +241,6 @@ ul li h3 {
 	content: '\e84A';
 }
 
-body > div.snap-drawers > div.snap-drawer.snap-drawer-left > div > ul > li.home > a:before{
-    content: '\e84A';
-}
-
-/* Show "Left" drawer for the "Right" drawer in the demo */
-/*.snapjs-right .snap-drawer-left {
-    display: block;
-    right: 0;
-    left: auto;
-}*/
-
-/* Hide the actual "Right" drawer in the demo */
-/*
-.snapjs-right .snap-drawer-right {
-    display: none;
-}
-*/
-
-#home-page{
-    backface-visibility:hidden;
-    -webkit-backface-visibility:hidden; /* Chrome and Safari */
-    -moz-backface-visibility:hidden; /* Firefox */
-    -ms-backface-visibility:hidden; /* Internet Explorer 10+ */
-}
 /*
 .icon:before {
   display: inline-block;
@@ -309,10 +285,7 @@ body > div.snap-drawers > div.snap-drawer.snap-drawer-left > div > ul > li.home 
 
  }
  */
-#home-page {
-	background: #BFC7D8;
-  z-index: 1;
-}
+
 .comment img {
 	width: auto;
 	height: auto;

@@ -158,7 +158,7 @@ var app = {
             success: function (data) {
                 var successMessage = data.status;
                 if (0 == successMessage.localeCompare("pending") || 0 == successMessage.localeCompare("ok")) {
-                    var intervalSuccess = setInterval(function () {
+                    /*var intervalSuccess = setInterval(function () {
                         $.mobile.loading('show', {
                             theme: "b",
                             text: "Your comment has been submitted. The author may still need to approve it before it appears.",
@@ -166,13 +166,15 @@ var app = {
                             textVisible: true
                         });
                         clearInterval(intervalSuccess);
-                    }, 1);
-                    $("form").trigger('reset');
+                    }, 1);*/
+                    
                     $('#popupComment').popup('close');
+                    window.plugins.toast.show('Your comment has been submitted. The author may still need to approve it before it appears.', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+                    $("form").trigger('reset');
                 }
 
                 else {
-                    var intervalError = setInterval(function () {
+                    /*var intervalError = setInterval(function () {
                         $.mobile.loading('show', {
                             theme: "b",
                             text: "Error: " + data.error,
@@ -180,10 +182,11 @@ var app = {
                             textVisible: true
                         });
                         clearInterval(intervalError);
-                    }, 1);
+                    }, 1);*/
+                    window.plugins.toast.showLongBottom('Error: ' + data.error, function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
                 }
 
-                doneLoading();
+               doneLoading();
                 var doneCommentMessage = setInterval(function () {
                     $.mobile.loading('hide');
                     clearInterval(doneCommentMessage);
@@ -194,7 +197,7 @@ var app = {
 
             error: function (xhr, textStatus, errorThrown) {
                 // Handle error
-                doneLoading();
+              //  doneLoading();
                 if (errorThrown == 'Conflict') {
                     errorThrown = 'A similar comment has already been submitted.';
                 }
@@ -227,12 +230,12 @@ var app = {
                 $("#authorslist").listview("refresh");
             //     $(".wrapper").listview().listview("refresh");
                     //$('.wrapper').listview('refresh');
-                doneLoading();
+            //    doneLoading();
                 dfd.resolve(data);
 
             },
             error: function (xhr, textStatus, errorThrown) {
-                doneLoading();
+               // doneLoading();
                 handleError(xhr, textStatus, errorThrown);
             }
         });
@@ -336,11 +339,11 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                //   $('.pwrapper').iscrollview("resizeWrapper");
                   //
                  // $( wrap).iscrollview("resizeWrapper");
-                doneLoading();
+              //  doneLoading();
 
             },
             error: function (xhr, textStatus, errorThrown) {
-                doneLoading();
+             //   doneLoading();
                 handleError(xhr, textStatus, errorThrown);
             }
         });
@@ -416,26 +419,35 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                      $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
                //         alert(resultData);
                   //      console.log(resultData);
-                    doneLoading();
+                  
                         
                        // pageContainerElement.page({ domCache: true });
+                  //       doneLoading(); 
                     dfd.resolve(data);
+                       //   if (type=='search')
+                       
                     }
                     else {
-                        doneLoading();
+                    // if (type=='search') 
+                     //   doneLoading();
+                    //    console.log("Nothing beyond.");
                         if ((type=='search' && searchFound==true) || type!='search'){
-                        showMessage('There is nothing beyond this that matches your query.', 3000);
-                        setTimeout(function(){ loading(); page =1; history.back();/*app.get(type, page, arg);*/}, 3000);
+                            window.plugins.toast.showShortBottom('There is nothing beyond this that matches your query.');
+                      //  showMessage('There is nothing beyond this that matches your query.', 3000);
+                        setTimeout(function(){ loading(); page =1; /*app.get(type, page, arg);*/}, 3000);
                         }
                         else {
+                            
+                        console.log("Not found.");
                             searchFound = false;
-                            showMessage('Not found. Please search with a different keyword again.', 1500); 
+                             window.plugins.toast.showShortBottom('Not found. Please search with a different keyword again.');
+                         //   showMessage('Not found. Please search with a different keyword again.', 1500); 
                             setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open'); }, 1500);   
                     } 
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    doneLoading();
+                  //  doneLoading();
                     handleError(xhr, textStatus, errorThrown);
                 }
             });

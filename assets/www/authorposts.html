@@ -27,7 +27,7 @@
 		<title>Author Posts</title>
 	</head>
 	<body>
-		<div class="hwrapper" data-role="page" id="authorposts-page">
+		<div class="hwrapper" data-role="page" id="authorposts-page" data-dom-cache="true">
 			<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
 				<ul>
 					<li class="home">
@@ -52,10 +52,10 @@
 					</div>
 				</ul>
 			</div>
-			<div class="header" data-role="header">
-				<span class="open left"><a href="#panel-left">&#xe809;</a></span>
+			<div class="header" data-role="header" >
+				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
 				<span class="title">DWIT News</span>
-				<span class="open right"><a href="#panel-right">&#xe805;</a></span>
+				<span class="open right"><a href="javascript:$.mobile.activePage.find('#panel-right').panel('open'); " in-app="true">&#xe805;</a></span>
 			</div>
 
 			<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
@@ -173,6 +173,17 @@
         }
       });
     });
+                  $(document).on("pagehide","#authorposts-page",function(){ 
+                    if (($.mobile.activePage[0].id)!='single-post-page') $(this).remove();
+                    });
+                
+                   $(document).ajaxStart(function() {
+    loading();
+});
+
+$(document).ajaxStop(function() {
+    doneLoading();
+});
 			</script>
 
 		</div>

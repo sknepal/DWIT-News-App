@@ -56,10 +56,10 @@ function loading() {
         textonly: false,
         textVisible: true
     });
-    $("body").find("*").attr("disabled", "disabled");
-    $("body").find("a").click(function (e) {
+   // $("body").find("*").attr("disabled", "disabled");
+    /*$("body").find("a").click(function (e) {
         e.preventDefault();
-    });
+    });*/
 }
 
 
@@ -139,7 +139,7 @@ if (errorThrown == 'abort') return false;
 //console.log(xhr);
   //  console.log(textStatus);
     //console.log(errorThrown);
-    var errorMessage = setInterval(function () {
+    /*var errorMessage = setInterval(function () {
         $.mobile.loading('show', {
             theme: "b",
             text: 'Error' + ": " + errorThrown + " Please try again later.",
@@ -152,5 +152,8 @@ if (errorThrown == 'abort') return false;
         $.mobile.loading('hide');
         clearInterval(clearErrorMessage);
        // window.history.back()
-    }, 3000);
+    }, 3000);*/
+    
+        window.plugins.toast.showLongBottom('Error: ' + errorThrown + " Please try again later.", function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+    
 }

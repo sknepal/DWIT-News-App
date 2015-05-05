@@ -29,7 +29,7 @@
 		<title>Category</title>
 	</head>
 	<body>
-		<div class="hwrapper" data-role="page" id="category-page">
+		<div class="hwrapper" data-role="page" id="category-page" data-dom-cache="true">
 
 			<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
 				<ul>
@@ -55,10 +55,10 @@
 					</div>
 				</ul>
 			</div>
-			<div class="header" data-role="header">
-				<span class="open left"><a href="#panel-left">&#xe809;</a></span>
+		<div class="header" data-role="header" >
+				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
 				<span class="title">DWIT News</span>
-				<span class="open right"><a href="#panel-right">&#xe805;</a></span>
+				<span class="open right"><a href="javascript:$.mobile.activePage.find('#panel-right').panel('open'); " in-app="true">&#xe805;</a></span>
 			</div>
 
 			<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
@@ -192,7 +192,7 @@
 					$(".iscroll-wrapper", this).bind({
 						iscroll_onpulldown : function(event, data) {
 							//react to a pull-down as necessary here
-							loading();
+						//	loading();
 							app.get("category", 1, urlParams["cat"]);
 							console.log(where);
 							//then call this to reset the pull-to-refresh controls:
@@ -203,7 +203,7 @@
                 
                 	$(document).on("pagebeforehide","#category-page",function(){ // When leaving pagetwo
                         request.abort();
-   $("body").find("*").removeAttr("disabled");
+//   $("body").find("*").removeAttr("disabled");
   /*  $("body").find("a").unbind("click");*/
 });
                 
@@ -220,6 +220,17 @@
         }
       });
     });
+                
+    $(document).ajaxStart(function() {
+    loading();
+});
+
+$(document).ajaxStop(function() {
+    doneLoading();
+});
+                  $(document).on("pagehide","#category-page",function(){ 
+                    if (($.mobile.activePage[0].id)!='single-post-page') $(this).remove();
+                    });
 			</script>
 		</div>
 

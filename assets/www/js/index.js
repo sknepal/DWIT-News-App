@@ -135,8 +135,8 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         initPushwoosh();
-        var attachFastClick = Origami.fastclick;
-        attachFastClick(document.body);
+        //var attachFastClick = Origami.fastclick;
+        //attachFastClick(document.body);
         app.receivedEvent('deviceready');
         // navigator.splashscreen.show();
 

@@ -16,7 +16,8 @@
           <script type="text/javascript" src="js/PushwooshAndroid.js"></script>
 
 		<script type="text/javascript" src="js/libs/handlebars.js"></script>
-       <script type='application/javascript' src='js/fastclick.min.js'></script>
+      <!-- <script type='text/javascript' src='js/fastclick.min.js'></script>-->
+        <script type='text/javascript' src='js/energize-min.js'></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -28,7 +29,8 @@
 		<script src="js/pull.js" type="text/javascript"></script>
         <script src="js/jquery.touchSwipe.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/Toast.js"></script>
-        
+<script type="text/javascript" src="js/jquery.lazyloadxt.min.js"></script>
+
       <!--  <script type="text/javascript" src="PushNotification.js"></script>-->
         
       
@@ -175,10 +177,11 @@
       
     });*/
 				  $('#home-page').one("pageinit",function(event, ui){
-				app.initialize();
+				
 				 });
-
-				$('#home-page').one("pageshow", function(event, ui) {
+               
+$(document).one("pageshow","#home-page",function(){
+			//	$('#home-page').one("pageshow", function(event, ui) {
                     indexpage = 1;
                //  $(document).one("pageshow","#home-page",function(){
                      beginAtIndex = 0;
@@ -186,7 +189,12 @@
           //   $(document).one("pageshow","#home-page",function(){
 					// Handler for .ready() called.
 				//	loading();
-					app.get("blog", 1);
+      if (hasDownload === false) {
+        hasDownload = true;
+          app.get("blog", 1);
+        // do some work
+    }
+					
                     if ($('#search-page').remove()) {
                     }
 				});
@@ -201,6 +209,7 @@
 */
 			//	$(document).delegate("#home-page", "pageinit", function(event) {
                  $(document).one("pageinit", '#home-page', function(event, ui) {  
+                     app.initialize();
               //  $('#home-page').one("pageinit",function(event, ui){
 					$(".iscroll-wrapper", this).bind({
 						iscroll_onpulldown : function(event, data) {

@@ -37,7 +37,7 @@ function registerPushwooshAndroid() {
 			}
 
 			//and show alert
-        navigator.notification.alert(title, alertDismissed, 'DWIT News');
+       navigator.notification.alert(title, alertDismissed, 'DWIT News');
 			//alert(title);
 //alert(userData);
 			//stopping geopushes

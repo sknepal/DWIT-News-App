@@ -83,10 +83,13 @@
 			<div id="authorposts-content" data-role="content" class="authorpostsblog">
 
 				<div id="authorp-data" data-iscroll="" class="awrapper">
+                    	<div class="iscroll-pulldown">
+						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
+					</div>
                       <div class="scrollwrap"></div>
 					<script id="authorposts-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}', 'fade');" in-app="true">
 						<h3 style="font-size: 22px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -96,6 +99,10 @@
 						</a></li>
 						{{/each}}
 					</script>
+                           <div class="iscroll-pullup">
+        <span class="iscroll-pull-icon"></span>
+        <span class="iscroll-pull-label"></span>
+      </div>
 				</div>
 
 			</div>
@@ -115,7 +122,9 @@
 				page = 1;
 			
 				$(document).one("pageshow", '#authorposts-page', function(event, ui) {
-     
+       authorpostspage=1;
+                    array = 'authorpostsArray';
+                            beginAtAuthor = 0;
         $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");
@@ -150,6 +159,27 @@
 						window.open($(e.currentTarget).attr('href'), '_system', '');
 					}
 				});
+              $(document).one("pageinit", '#authorposts-page', function(event, ui) {  
+              //  $('#authorposts-page').one("pageinit",function(event, ui){
+					$(".iscroll-wrapper", this).bind({
+						iscroll_onpulldown : function(event, data) {
+                            authorpostspage=1;
+                            beginAtAuthor = 0;
+							app.get("author", 1, urlParamsAuth["authname"]);
+							data.iscrollview.refresh();
+						}
+                    });
+                    	$(".iscroll-wrapper", this).bind({
+                        iscroll_onpullup : function(event, data){
+                               if ($.mobile.activePage.find('#authorposts-page-posts li').length == 0) { 	app.get("author", authorpostspage, urlParamsAuth["authname"]); } else{
+                        	app.get("author", ++authorpostspage, urlParamsAuth["authname"]);
+                               }
+                      //       console.log(page);
+                        data.iscrollview.refresh();
+                        
+                    }
+					});                        
+				});
                 
                 	$("#panel-left").on("click", function() {
 					$("#panel-left").panel("close");
@@ -157,7 +187,7 @@
                 
 		$(document).on("pagebeforehide","#authorposts-page",function(){ // When leaving pagetwo
             request.abort();
-   $("body").find("*").removeAttr("disabled");
+ //  $("body").find("*").removeAttr("disabled");
    /* $("body").find("a").unbind("click");*/
 });
                                    $(function() {      

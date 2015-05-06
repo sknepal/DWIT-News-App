@@ -1,4 +1,4 @@
-var page, catpage, where;
+var indexpage, catpage, searchpage, authorpostspage, where;
 var urlParamsSearch;
    var urlParams, urlParamsAuth, viewed = false;
 
@@ -51,10 +51,10 @@ document.addEventListener('push-notification', function(event) {
 
 function loading() {
     $.mobile.loading('show', {
-        theme: "b",
+        theme: "d",
         text: "",
         textonly: false,
-        textVisible: true
+      textVisible: true
     });
    // $("body").find("*").attr("disabled", "disabled");
     /*$("body").find("a").click(function (e) {
@@ -66,7 +66,7 @@ function loading() {
 function changeCat(changeTo){
     
     $(':mobile-pagecontainer').pagecontainer('change', changeTo, {
-        transition: 'flow',
+        transition: 'fade',
         reload    : true,
         changeHash: false,
       allowSamePageTransition: true
@@ -74,11 +74,11 @@ function changeCat(changeTo){
 }
 
 function changePage(changeTo, pageTransition, reloadR){
-     if (typeof(pageTransition)==='undefined') pageTransition = 'flow';
+     if (typeof(pageTransition)==='undefined') pageTransition = 'fade';
      if (typeof(pageTransition)==='undefined')  reloadR = false;
     $(':mobile-pagecontainer').pagecontainer('change',changeTo, {
                           transition: pageTransition,
-        showLoadMsg             : true,
+     //   showLoadMsg             : true,
        //changeHash: true,
                         // reverse: false,
                           //changeHash: true,
@@ -87,14 +87,14 @@ function changePage(changeTo, pageTransition, reloadR){
         
                          // reload:false
                         });
-    console.log(reloadR);
+   // console.log(reloadR);
 }
 
 
 function doneLoading() {
     $.mobile.loading('hide');
-    $("body").find("*").removeAttr("disabled");
-    $("body").find("a").unbind("click");
+  //  $("body").find("*").removeAttr("disabled");
+//    $("body").find("a").unbind("click");
 }
 
 
@@ -114,23 +114,25 @@ function showMessage(msg, time) {
 
 
 function prev(where, arg) {
-    if (page <=1) { showMessage('You\'re already on the first page.', 1000);
+    /*if (page <=1) { 
+         window.plugins.toast.showLongBottom('You\'re already on the first page.', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+     //   showMessage('You\'re already on the first page.', 1000);
     } else{
         loading();
         setTimeout(function () {
             if (arg == null || arg == undefined) { app.get(where, --page); }
             else { app.get(where, --page, arg);}
         }, 2000);
-    }
+    }*/
 }
 
 
 this.next = function (where, arg) {
-        loading();
+      /*  loading();
         setTimeout(function () {
             if (arg == null || arg == undefined) { app.get(where, ++page); }
             else { app.get(where, ++page, arg);}
-        }, 2000);
+        }, 2000);*/
     }
  
 

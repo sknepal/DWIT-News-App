@@ -92,7 +92,7 @@
                     <div class="scrollwrap"></div>
 					<script id="cat-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a data-transition="flip" href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
+						<li><a data-transition="flip" href="javascript:changePage('single.html?{{@index}}', 'fade');" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -102,6 +102,10 @@
 						</a></li>
 						{{/each}}
 					</script>
+                         <div class="iscroll-pullup">
+        <span class="iscroll-pull-icon"></span>
+        <span class="iscroll-pull-label"></span>
+      </div>
 				</div>
 
 			</div>
@@ -135,12 +139,13 @@
 
 				$(document).one("pageshow", '#category-page', function(event, ui) {
                    // 
-                    
+                     beginAtCategory = 0;
+                    array = 'categoryArray';
                             $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");
   }); 
-					page = 1;
+					catpage = 1;
 					// Handler for .ready() called.
 					//pageContainerElement.page({ domCache: false });
 					//  if (viewed == false){
@@ -187,18 +192,30 @@
 					}
 				});
 
-			
-				$(document).delegate("#category-page", "pageinit", function(event) {
+			 $(document).one("pageinit", '#category-page', function(event, ui) {  
+			//	$('#category-page').one("pageinit",function(event, ui){
 					$(".iscroll-wrapper", this).bind({
 						iscroll_onpulldown : function(event, data) {
 							//react to a pull-down as necessary here
 						//	loading();
+                            catpage = 1;
 							app.get("category", 1, urlParams["cat"]);
 							console.log(where);
+                            beginAtCategory = 0;
 							//then call this to reset the pull-to-refresh controls:
 							data.iscrollview.refresh();
 						}
 					});
+                      	$(".iscroll-wrapper", this).bind({
+                        iscroll_onpullup : function(event, data){
+                               if ($.mobile.activePage.find('#category-page-posts li').length==0) {  app.get("category", catpage, urlParams["cat"]); } else{
+                        app.get("category", ++catpage, urlParams["cat"]);
+                               }
+                             console.log(page);
+                        data.iscrollview.refresh();
+                        
+                    }
+					});   
 				});
                 
                 	$(document).on("pagebeforehide","#category-page",function(){ // When leaving pagetwo

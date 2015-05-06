@@ -47,7 +47,7 @@
 					</li>
 
 					<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'flow');searchFound=null;">
+						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'fade');searchFound=null;">
 							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search for..." autofocus/>
 
 						</form>
@@ -86,10 +86,13 @@
 			</div>
 			<div id="searchresults-content" data-role="content" class="blog" >
 				<div id="searchresults-data" data-iscroll="" class="swrapper">
+                    <div class="iscroll-pulldown">
+						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
+					</div>
   <div class="scrollwrap"></div>
 					<script id="search-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}', 'fade');" in-app="true">
 						<h3 style="font-size: 22px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -99,6 +102,10 @@
 						</a></li>
 						{{/each}}
 					</script>
+                         <div class="iscroll-pullup">
+        <span class="iscroll-pull-icon"></span>
+        <span class="iscroll-pull-label"></span>
+      </div>
 				</div>
 			</div>
 			<div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false" data-transition="slidedown">
@@ -117,10 +124,11 @@
 				$('form').on('submit', function(e) {
 					e.preventDefault();
 				});
-				page = 1;
+				
 			$(document).one("pageshow", '#search-page', function(event, ui) {
-
-                    
+searchpage=1;
+                beginAtSearch=0;
+                    array = 'searchArray';
                             $.mobile.activePage.find('#panel-left').on("click", function () {
                         $.mobile.activePage.find('#panel-left').panel("close");    
   // $("#panel-left").panel("close");
@@ -171,7 +179,7 @@ $(document).ajaxStop(function() {
                 	$(document).on("pagebeforehide","#search-page",function(){ // When leaving pagetwo
                         searchFound = null;
                         request.abort();
-   $("body").find("*").removeAttr("disabled");
+ //  $("body").find("*").removeAttr("disabled");
    /* $("body").find("a").unbind("click");*/
 });
                 
@@ -188,6 +196,27 @@ $(document).ajaxStop(function() {
         }
       });
     });
+                 $(document).one("pageinit", '#search-page', function(event, ui) {  
+               // 	$('#search-page').one("pageinit",function(event, ui){
+					$(".iscroll-wrapper", this).bind({
+						iscroll_onpulldown : function(event, data) {
+                            searchpage=1;
+                            beginAtSearch = 0;
+								app.get("search", 1, urlParamsSearch["search"]);
+							data.iscrollview.refresh();
+						}
+                    });
+                    	$(".iscroll-wrapper", this).bind({
+                        iscroll_onpullup : function(event, data){
+                               if ($.mobile.activePage.find('#search-page-posts li').length==0) { app.get("search", searchpage, urlParamsSearch["search"]); } else{
+                        	app.get("search", ++searchpage, urlParamsSearch["search"]);
+                               }
+                      //       console.log(page);
+                        data.iscrollview.refresh();
+                        
+                    }
+					});                        
+				});
 /*$('#search-page').on('pagehide', function () {
    // if (!($.mobile.activePage[0].id)=='single-post-page')
    $(this).remove();

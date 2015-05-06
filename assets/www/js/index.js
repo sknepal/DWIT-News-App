@@ -18,7 +18,8 @@
  * under the License.
  */
 var title, searchFound, url, request, authRequest, pageRequest, id, singlePostClickLocation;
-
+var homeArray=[], categoryArray=[], searchArray=[], authorpostsArray=[], array;
+var beginAtIndex=0, beginAtAuthor=0, beginAtCategory=0, beginAtSearch=0, beginWhere;
 this.share = function (name, uri) {
     if (typeof name === 'undefined' || typeof uri === 'undefined') {
         window.plugins.socialsharing.share(title, null, null, url);
@@ -134,6 +135,8 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         initPushwoosh();
+        var attachFastClick = Origami.fastclick;
+        attachFastClick(document.body);
         app.receivedEvent('deviceready');
         // navigator.splashscreen.show();
 
@@ -242,6 +245,7 @@ var app = {
     },
 
     single: function () {
+        console.log('single');
         var postDataLocation;
     //  alert("WHERE: " + singlePostClickLocation);
          if ($.mobile.activePage[0].id == 'home-page'){
@@ -361,9 +365,9 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                 jsonURL += jsonRequest;
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
                 wrap = ".cwrapper";
-                
               templatesource = "#cat-template";
-               
+                beginWhere = 'beginAtCategory';
+                array = 'categoryArray';
                 
             }
             else if (type == 'search') {
@@ -372,6 +376,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                 jsonURL += '&search=' + arg + '&page=' + pagecount + '&count=' + count;
                 templatesource = "#search-template";
                 wrap = ".swrapper";
+                 beginWhere = 'beginAtSearch';
+                  array = 'searchArray';
             }
             else if (type == 'blog') {
                 jsonRequest = "get_recent_posts";
@@ -379,6 +385,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                 jsonURL += '&page=' + pagecount + '&count=' + count;
           //   $.mobile.activePage.attr('id') + "-posts";
            wrap = ".wrapper";
+                beginWhere = 'beginAtIndex';
+                  array = 'homeArray';
             }
             else { // type == 'author'
                 jsonRequest = "get_author_posts";
@@ -386,6 +394,8 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                 jsonURL += '&slug=' + arg + '&page=' + pagecount + '&count=' + count;
                  templatesource = "#authorposts-template";
                 wrap = ".awrapper";
+                beginWhere = 'beginAtAuthor';
+                  array = 'authorpostsArray';
             }
        
   /*          var dfd = $.Deferred();
@@ -409,20 +419,32 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                           // $("#category-page").trigger('pagecreate');
                     //    $(wrap + " .iscroll-content").html();
                  //       $(wrap + " .iscroll-content").append("");
+                         if (!document.getElementById(listview)){
                     $(wrap + " .scrollwrap").html("<ul data-role='listview' onclick='' id='" + listview + "'> </ul>");
                     $(wrap).trigger("create");
+                         }
                   //  $('#all-posts').listview('refresh');
-                    $('#' + listview).html(resultData);
+                       // console.log("Page: " + page);
+                        if (pagecount==1) {  $('#' + listview).html(resultData); }
+                        else{
+                    $('#' + listview).append(resultData);
+                        }
                     $('#' + listview).listview('refresh');
                  //   $( wrap).iscrollview("resizeWrapper");
                   $(wrap).iscrollview("refresh");
-                     $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
+                  if (pagecount==1)   $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
                //         alert(resultData);
                   //      console.log(resultData);
-                  
+                    var sizeOfList =  $("#" + $.mobile.activePage.attr('id') + "-posts li").size();
+                   for (i=window[beginWhere], j=0;i<sizeOfList;i++, j++){
+                             // for (j=0;j<data.posts.length;j++)
+                                    window[array][i] = data.posts[j];
+                            }
+                        
+                    window[beginWhere] = i;
                         
                        // pageContainerElement.page({ domCache: true });
-                  //       doneLoading(); 
+                         doneLoading(); 
                     dfd.resolve(data);
                        //   if (type=='search')
                        
@@ -434,7 +456,22 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                         if ((type=='search' && searchFound==true) || type!='search'){
                             window.plugins.toast.showShortBottom('There is nothing beyond this that matches your query.');
                       //  showMessage('There is nothing beyond this that matches your query.', 3000);
-                        setTimeout(function(){ loading(); page =1; /*app.get(type, page, arg);*/}, 3000);
+                       
+                            if ($.mobile.activePage[0].id == 'home-page'){
+                                indexpage = 1;
+                }
+                  else if ($.mobile.activePage[0].id == 'category-page'){
+                           catpage=1;
+                  }
+                    else if($.mobile.activePage[0].id == 'search-page'){
+                            searchpage = 1;
+                    }
+                        else if ($.mobile.activePage[0].id== 'authorposts-page'){
+                                authorpostspage = 1;
+                        }
+                 
+                            
+                            /*app.get(type, page, arg);*/
                         }
                         else {
                             
@@ -445,6 +482,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                             setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open'); }, 1500);   
                     } 
                     }
+                    
                 },
                 error: function (xhr, textStatus, errorThrown) {
                   //  doneLoading();
@@ -473,10 +511,24 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                         else if ($.mobile.activePage[0].id== 'authorposts-page'){
                                 post = 'authorPostData';
                         }
+                 
+              
+               
   //  alert(post + " storage location");
-    //              console.log(post + " storage location");
-                localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
-                   
+                
+                     
+                    var splittedID = $.mobile.activePage.attr('id').split('-');
+                array = splittedID[0] + 'Array';
+                 console.log("Splitted: " + array);
+                   console.log("Array size: " + window[array].length);
+                 console.log("Begin at: " + beginWhere);
+                 
+               /*  for (i=0;i<array.length;i++){
+                     console.log(array[i]);
+                 }*/
+                console.log($(this).prevAll('li').size());
+             //   localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
+                   localStorage.setItem(post, JSON.stringify(window[array][$(this).prevAll('li').size()]));
                   // $( "#category-page" ).page( 'option', 'domCache', true );
  
               //  if ($.mobile.activePage.attr('id') == 'category-page') viewed = true;

@@ -16,7 +16,7 @@
           <script type="text/javascript" src="js/PushwooshAndroid.js"></script>
 
 		<script type="text/javascript" src="js/libs/handlebars.js"></script>
-       
+       <script type='application/javascript' src='js/fastclick.min.js'></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -28,6 +28,7 @@
 		<script src="js/pull.js" type="text/javascript"></script>
         <script src="js/jquery.touchSwipe.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/Toast.js"></script>
+        
       <!--  <script type="text/javascript" src="PushNotification.js"></script>-->
         
       
@@ -57,7 +58,7 @@
 					</li>
 
 					<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'flow', 'true');" target="_blank">
+						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'fade', 'true');" target="_blank">
 							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search" autofocus/>
 							<!--  <button data-theme="a" data-mini="true" type="submit" style="width:90px; margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%" onclick="">Search</button>-->
 
@@ -117,7 +118,7 @@
                        
 {{else}}
    
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'slidedown');" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}', 'fade');" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -136,8 +137,12 @@
 						{{/each}}
                         <div id="commentslist"></div>
 					</script>
+                    <div class="iscroll-pullup">
+        <span class="iscroll-pull-icon"></span>
+        <span class="iscroll-pull-label"></span>
+      </div>
 				</div>
-
+  
 			</div>
 
 			<div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false">
@@ -163,7 +168,7 @@
 					}
 				});
 				where = 'blog';
-				page = 1;
+				indexpage = 1;
 /*    $(document).on('click', "#home-page-posts" + " li", function (e) {
         e.preventDefault;
         
@@ -174,6 +179,10 @@
 				 });
 
 				$('#home-page').one("pageshow", function(event, ui) {
+                    indexpage = 1;
+               //  $(document).one("pageshow","#home-page",function(){
+                     beginAtIndex = 0;
+                    array = 'homeArray';
           //   $(document).one("pageshow","#home-page",function(){
 					// Handler for .ready() called.
 				//	loading();
@@ -190,19 +199,27 @@
 					$.mobile.activePage.find('#panel-left').panel("close");
 				});
 */
-				$(document).delegate("#home-page", "pageinit", function(event) {
+			//	$(document).delegate("#home-page", "pageinit", function(event) {
+                 $(document).one("pageinit", '#home-page', function(event, ui) {  
+              //  $('#home-page').one("pageinit",function(event, ui){
 					$(".iscroll-wrapper", this).bind({
 						iscroll_onpulldown : function(event, data) {
-							//react to a pull-down as necessary here
-					//		loading();
-							app.get("blog", 1);
-						//	console.log(where);
-							//then call this to reset the pull-to-refresh controls:
+                            indexpage=1;
+                            beginAtIndex = 0;
+							app.get("blog", indexpage);
 							data.iscrollview.refresh();
 						}
-					});
-                                    
-          
+                    });
+                    	$(".iscroll-wrapper", this).bind({
+                        iscroll_onpullup : function(event, data){
+                          if ($.mobile.activePage.find('#home-page-posts li').length==0) { app.get("blog", indexpage); } else{
+                        app.get("blog", ++indexpage);
+                          }
+                      //       console.log(page);
+                        data.iscrollview.refresh();
+                        
+                    }
+					});                        
 				});
 
   
@@ -243,6 +260,7 @@
           */
     $(document).ajaxStart(function() {
     loading();
+      //  $.mobile.loading('show');
 });
 
 $(document).ajaxStop(function() {

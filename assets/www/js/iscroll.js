@@ -152,7 +152,7 @@ var m = Math,
 			vScrollbar: true,
 			fixedScrollbar: isAndroid,
 			hideScrollbar: true,
-			fadeScrollbar: isIDevice && has3d,
+			fadeScrollbar: has3d,
 			scrollbarClass: '',
 
 			// Zoom

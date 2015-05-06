@@ -51,7 +51,7 @@ document.addEventListener('push-notification', function(event) {
 
 function loading() {
     $.mobile.loading('show', {
-        theme: "d",
+        theme: "b",
         text: "",
         textonly: false,
       textVisible: true

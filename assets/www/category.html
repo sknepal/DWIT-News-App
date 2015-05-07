@@ -200,10 +200,10 @@
 						//	loading();
                             catpage = 1;
 							app.get("category", 1, urlParams["cat"]);
-							console.log(where);
+					//		console.log(where);
                             beginAtCategory = 0;
 							//then call this to reset the pull-to-refresh controls:
-							data.iscrollview.refresh();
+						//	data.iscrollview.refresh();
 						}
 					});
                       	$(".iscroll-wrapper", this).bind({
@@ -211,8 +211,8 @@
                                if ($.mobile.activePage.find('#category-page-posts li').length==0) {  app.get("category", catpage, urlParams["cat"]); } else{
                         app.get("category", ++catpage, urlParams["cat"]);
                                }
-                             console.log(page);
-                        data.iscrollview.refresh();
+                     //        console.log(page);
+                   //     data.iscrollview.refresh();
                         
                     }
 					});   

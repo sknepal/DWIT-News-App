@@ -421,8 +421,9 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                  //       $(wrap + " .iscroll-content").append("");
                          if (!document.getElementById(listview)){
                     $(wrap + " .scrollwrap").html("<ul data-role='listview' onclick='' id='" + listview + "'> </ul>");
-                    $(wrap).trigger("create");
+                    
                          }
+$(wrap).trigger("create");
                   //  $('#all-posts').listview('refresh');
                        // console.log("Page: " + page);
                         if (pagecount==1) {  $('#' + listview).html(resultData); }
@@ -430,7 +431,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                     $('#' + listview).append(resultData);
                         }
                     $('#' + listview).listview('refresh');
-                 //   $( wrap).iscrollview("resizeWrapper");
+                    $( wrap).iscrollview("resizeWrapper");
                   $(wrap).iscrollview("refresh");
                   if (pagecount==1)   $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
                //         alert(resultData);
@@ -519,9 +520,9 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
                      
                     var splittedID = $.mobile.activePage.attr('id').split('-');
                 array = splittedID[0] + 'Array';
-                 console.log("Splitted: " + array);
-                   console.log("Array size: " + window[array].length);
-                 console.log("Begin at: " + beginWhere);
+                // console.log("Splitted: " + array);
+                //   console.log("Array size: " + window[array].length);
+               //  console.log("Begin at: " + beginWhere);
                  
                /*  for (i=0;i<array.length;i++){
                      console.log(array[i]);

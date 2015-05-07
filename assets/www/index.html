@@ -120,7 +120,7 @@
                        
 {{else}}
    
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'slide');" in-app="true">
+						<li><a href="single.html?{{@index}}" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -216,7 +216,7 @@ $(document).one("pageshow","#home-page",function(){
                             indexpage=1;
                             beginAtIndex = 0;
 							app.get("blog", indexpage);
-							data.iscrollview.refresh();
+						//	data.iscrollview.refresh();
 						}
                     });
                     	$(".iscroll-wrapper", this).bind({
@@ -225,7 +225,7 @@ $(document).one("pageshow","#home-page",function(){
                         app.get("blog", ++indexpage);
                           }
                       //       console.log(page);
-                        data.iscrollview.refresh();
+                      //  data.iscrollview.refresh();
                         
                     }
 					});                        

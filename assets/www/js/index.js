@@ -431,7 +431,7 @@ $(wrap).trigger("create");
                     $('#' + listview).append(resultData);
                         }
                     $('#' + listview).listview('refresh');
-                    $( wrap).iscrollview("resizeWrapper");
+                 //   $( wrap).iscrollview("resizeWrapper");
                   $(wrap).iscrollview("refresh");
                   if (pagecount==1)   $(wrap).iscrollview("scrollTo", 0, 0, 0, false);
                //         alert(resultData);

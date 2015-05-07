@@ -102,9 +102,11 @@
 
 			<div id="blog-content" data-role="content" class="blog">
 				<div id="blog-data" data-iscroll class="wrapper">
+          
 					<div class="iscroll-pulldown">
 						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
 					</div>
+                      <div id="fixflickr" style="background:green;z-index:-5;position:absolute;width:420%;height:420%;left:-104%;top:-104%"> wazzow! </div>
                     <div class="scrollwrap"></div>
 <!--{{#ifCond categories.0.slug "news-snippets"}}
                        
@@ -120,7 +122,7 @@
                        
 {{else}}
    
-						<li><a href="single.html?{{@index}}" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}', 'slide');" in-app="true">
 						<h3 style="font-size: 20px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -147,7 +149,7 @@
   
 			</div>
 
-			<div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false">
+			<div class="footer" data-id="footer" data-role="footer">
 				<div data-role="navbar" class="nav">
 					<ul>
 						<li class="prev">

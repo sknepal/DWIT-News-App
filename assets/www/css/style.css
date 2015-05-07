@@ -24,9 +24,27 @@
     display: block;
 }
 
+div {
+-webkit-transform: translate3d(0,0,0);
+}
+
+.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"],
+.ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active {
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+}
+
+.ui-page {
+    -webkit-backface-visibility: hidden; 
+}
 
 .is-broken img {
   opacity: 0;
+}
+
+.ui-mobile-viewport-transitioning,
+.ui-mobile-viewport-transitioning .ui-page {
+overflow: visible;
 }
 
 img{

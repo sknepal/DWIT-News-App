@@ -494,10 +494,12 @@ $(wrap).trigger("create");
         };
         getPosts().then(function (data) {
             var post;
+          
         //     alert( "on click");
             //   localStorage.removeItem("postData");
            // $('#' + $.mobile.activePage.attr('id') + '-posts').on('tap', 'li', function (e) {
              $(document).on('tap', "#" + $.mobile.activePage.attr('id') + "-posts" + " li", function (e) {
+                        
              //    alert($.mobile.activePage[0].id + " starting");
            //      console.log($.mobile.activePage[0].id + " starting");
                 if ($.mobile.activePage[0].id == 'home-page'){
@@ -527,7 +529,7 @@ $(wrap).trigger("create");
                /*  for (i=0;i<array.length;i++){
                      console.log(array[i]);
                  }*/
-                console.log($(this).prevAll('li').size());
+              //  console.log($(this).prevAll('li').size());
              //   localStorage.setItem(post, JSON.stringify(data.posts[$(this).index()]));
                    localStorage.setItem(post, JSON.stringify(window[array][$(this).prevAll('li').size()]));
                   // $( "#category-page" ).page( 'option', 'domCache', true );

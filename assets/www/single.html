@@ -83,6 +83,7 @@
 				</ul>
 			</div>
 			<div id="single-content" data-role="content" data-iscroll class="single">
+                  <div id="fixflickr" style="background:green;z-index:-5;position:absolute;width:420%;height:420%;left:-104%;top:-104%"> wazzow! </div>
 				<div id="single-data"  class="singlewrapper">
 
 					<script id="single-template" type="text/x-handlebars-template">
@@ -126,7 +127,7 @@
 				</div>
 			</div>
 
-			<div class="footer" data-id="footer" data-role="footer" data-tap-toggle="false"  data-transition="slidedown" >
+			<div class="footer" data-id="footer" data-role="footer">
 				<div data-role="navbar" data-theme="b" data-content-theme="b">
 					<ul>
 
@@ -147,10 +148,13 @@
                     // 
                     
                 });*/          
+                 $(document).one("pageinit", '#single-post-page', function(event, ui) {
+                app.single();
+                 });
 	//$(document).one("pageshow", '#single-post-page', function(event, ui) {
-                  app.single();
+                 
 				$('#single-post-page').one("pageshow", function(event, ui) {
-         
+          
                  /*   var imgLoad = imagesLoaded('#single-data');
 imgLoad.on( 'always', function() {
 //  console.log( imgLoad.images.length + ' images loaded' );

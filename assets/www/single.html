@@ -31,8 +31,36 @@
 		<title>Post</title>
 	</head>
 	<body>
-		<div class="hwrapper" id="single-post-page" data-role="page" >
-			<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
+		
+            <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-left">
+            <div>
+                <ul>
+                   <li class="home">
+						<a href="" onclick="changePage('index.html');"  title="Home" data-rel="close" in-app="true">Home</a>
+					</li>
+					<li class="authors">
+						<a href="" onclick="changePage('authors.html');" title="Authors" data-rel="close" in-app="true">Authors</a>
+					</li>
+					<li class="aboutus">
+						<a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" data-prefetch>About Us</a>
+					</li>
+		
+					<li class="search">
+						<a  href="javascript:$.mobile.activePage.find('#popupSearch').popup('open');" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+     </div>
+            <div class="hwrapper" id="single-post-page" data-role="page" >
+            <div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
+						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'fade', 'true');" target="_blank">
+							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search" autofocus/>
+			
+						</form>
+					</div>
+		<!--	<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
 				<ul>
 					<li class="home">
 						<a href="" onclick="changePage('index.html');"  title="Home" data-rel="close" in-app="true">Home</a>
@@ -54,7 +82,7 @@
 						</form>
 					</div>
 				</ul>
-			</div>
+			</div>-->
 			<div class="header" data-role="header" >
 				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
 				<span class="title">DWIT News</span>
@@ -145,9 +173,15 @@
 			<script type="text/javascript">	
          /*       $(document).one("pagebeforeshow", '#single-post-page', function(event, ui) {
                   singlePostClickLocation = ui.prevPage.attr('id');
-                    // 
-                    
-                });*/          
+                    */
+                        var snapper = new Snap({
+    element: document.getElementById('single-post-page'),
+                    disable: 'right',
+                    hyperextensible: false,
+                    maxPosition: 200,
+                    addBodyClasses: false
+});
+                       
                  $(document).one("pageinit", '#single-post-page', function(event, ui) {
                 app.single();
                  });

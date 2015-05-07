@@ -89,7 +89,7 @@
                       <div class="scrollwrap"></div>
 					<script id="authorposts-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'fade');" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}');" in-app="true" data-direction="reverse">
 						<h3 style="font-size: 22px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>

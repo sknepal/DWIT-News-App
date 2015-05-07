@@ -74,7 +74,7 @@ function changeCat(changeTo){
 }
 
 function changePage(changeTo, pageTransition, reloadR){
-     if (typeof(pageTransition)==='undefined') pageTransition = 'fade';
+     if (typeof(pageTransition)==='undefined') pageTransition = 'none';
      if (typeof(pageTransition)==='undefined')  reloadR = false;
     $(':mobile-pagecontainer').pagecontainer('change',changeTo, {
                           transition: pageTransition,

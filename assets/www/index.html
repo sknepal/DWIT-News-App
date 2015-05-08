@@ -7,7 +7,6 @@
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
-
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
@@ -90,14 +89,14 @@
 				</ul>
 			</div>-->
 
-			<div class="header" data-role="header" >
+			<div class="header" data-role="header" data-fullscreen="true" data-tap-toggle="true">
 				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
 				<span class="title">DWIT News</span>
-				<span class="open right"><a href="javascript:$.mobile.activePage.find('#panel-right').panel('open'); " in-app="true">&#xe805;</a></span>
+				<!--<span class="open right"><a href="javascript:$.mobile.activePage.find('#panel-right').panel('open'); " in-app="true">&#xe805;</a></span>-->
 			</div>
 
 			<!-- /#header -->
-			<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
+		<!--	<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
 			<ul>
 					<li class="news">
 						<a href="" onclick="changePage('category.html?cat=news-3');" title="News" data-rel="close" in-app="true">News</a>
@@ -117,7 +116,7 @@
 						<a href="" onclick="changePage('category.html?cat=faculty-corner');" title="Faculty" data-rel="close" in-app="true">Faculty</a>
 					</li>
 				</ul>
-			</div>
+			</div>-->
 			<!--        -->
 
 			<div id="blog-content" data-role="content" class="blog">
@@ -126,8 +125,19 @@
 					<div class="iscroll-pulldown">
 						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
 					</div>
+ 
+                    
                     <!--  <div id="fixflickr" style="background:green;z-index:-5;position:absolute;width:420%;height:420%;left:-104%;top:-104%"> wazzow! </div>-->
-                    <div class="scrollwrap"></div>
+                    <div class="scrollwrap"> 
+<div class="content">
+  <p>Loading...</p>
+  <div class="loading">
+    <div class="l1"></div>
+    <div class="l2"></div>
+    <div class="l3"></div>
+  </div>
+</div>
+<link href="http://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet" type="text/css"/>          </div>
 <!--{{#ifCond categories.0.slug "news-snippets"}}
                        
 {{else}}
@@ -169,19 +179,19 @@
   
 			</div>
 
-			<div class="footer" data-id="footer" data-role="footer">
-				<div data-role="navbar" class="nav">
+			<div class="footer" data-id="footer" data-role="footer" data-fullscreen="true" data-tap-toggle="true">
+               <!-- <li class="prev">
+							<a id="feedForward" href="javascript:prev('blog')" in-app="true">&nbsp;&nbsp;<span style="position: relative;top: -4px;">Prev</span> </a>-->
+<!--				<div data-role="navbar" class="nav">
 					<ul>
 						<li class="prev">
 							<a id="feedForward" href="javascript:prev('blog')" in-app="true">&nbsp;&nbsp;<span style="position: relative;top: -4px;">Prev</span> </a>
 						</li>
-						<!-- <a id="feedForward" href="javascript:prev('blog')" data-icon="arrow-l" in-app="true"><p>Prev</p></a> -->
 						<li>
 							<a id="feedForward" href="javascript:next('blog')" in-app="true" class="next"> <i class="fa fa-2x fa-arrow-circle-right"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Next</span> </a>
-							<!-- <a  id="feedForward" href="javascript:next('blog')" data-icon="arrow-r" in-app="true">Next</a> -->
 						</li>
 					</ul>
-				</div>
+				</div>-->
 			</div>
 			<script type="text/javascript">
                 var snapper = new Snap({
@@ -297,12 +307,17 @@ $(document).one("pageshow","#home-page",function(){
     });
           */
     $(document).ajaxStart(function() {
-    loading();
+        
+        $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:10px'/>");
+       // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:12px; margin-right:80px'/>");
+    //loading();
       //  $.mobile.loading('show');
 });
 
 $(document).ajaxStop(function() {
-    doneLoading();
+  $('.header > img.ui-btn-right').remove();      
+//$(".header img:last-child").remove()
+   // doneLoading();
 });
     
     

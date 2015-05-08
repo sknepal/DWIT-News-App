@@ -478,7 +478,7 @@ $(wrap).trigger("create");
                             
                         console.log("Not found.");
                             searchFound = false;
-                             window.plugins.toast.showShortBottom('Not found. Please search with a different keyword again.');
+                        window.plugins.toast.showShortBottom('Not found. Please search with a different keyword again.');
                          //   showMessage('Not found. Please search with a different keyword again.', 1500); 
                             setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open'); }, 1500);   
                     } 

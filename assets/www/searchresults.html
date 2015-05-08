@@ -47,7 +47,13 @@
 					</li>
 
 					<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
-						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'fade');searchFound=null;">
+						<form action="" onsubmit="if ($.mobile.activePage.find('#search').val()==urlParamsSearch['search']){
+                    }
+                    else{
+                    changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val());
+                    searchFound=null;
+                    }
+                    ">
 							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search for..." autofocus/>
 
 						</form>
@@ -92,7 +98,7 @@
   <div class="scrollwrap"></div>
 					<script id="search-template" type="text/x-handlebars-template">
 						{{#each posts}}
-						<li><a href="javascript:changePage('single.html?{{@index}}', 'fade');" in-app="true">
+						<li><a href="javascript:changePage('single.html?{{@index}}');" in-app="true">
 						<h3 style="font-size: 22px;">{{{this.title}}}</h3>
 						<span style="font-size: 16px;background: rgb(40, 114, 64);color: #fff;text-shadow: none;
 						margin-right: 15px;padding: 0px 5px;margin-top: -10px;	" class="ui-li-count">{{comments.length}}</span>
@@ -122,7 +128,7 @@
 			</div>
 			<script>
 				$('form').on('submit', function(e) {
-					e.preventDefault();
+			//		e.preventDefault();
 				});
 				
 			$(document).one("pageshow", '#search-page', function(event, ui) {
@@ -151,7 +157,7 @@ searchpage=1;
 						urlParamsSearch[decode(match[1])] = decode(match[2]);
 					})();
 					app.get("search", 1, urlParamsSearch["search"]);
-
+                       loading();
 				});
                 
  $(document).ajaxStart(function() {
@@ -217,6 +223,10 @@ $(document).ajaxStop(function() {
                     }
 					});                        
 				});
+               
+                function search(){
+                   
+                }
 /*$('#search-page').on('pagehide', function () {
    // if (!($.mobile.activePage[0].id)=='single-post-page')
    $(this).remove();

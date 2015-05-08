@@ -188,7 +188,13 @@
 	//$(document).one("pageshow", '#single-post-page', function(event, ui) {
                  
 				$('#single-post-page').one("pageshow", function(event, ui) {
-          
+          	$('a').click(function(e) {
+					var href = ["#panel-left", "#panel-right", "#"];
+					if (!($.inArray($(e.currentTarget).attr('href'), href) != -1 || $(e.currentTarget).attr('in-app') == 'true')) {
+						e.preventDefault();
+						window.open($(e.currentTarget).attr('href'), '_system', '');
+					}
+				});
                  /*   var imgLoad = imagesLoaded('#single-data');
 imgLoad.on( 'always', function() {
 //  console.log( imgLoad.images.length + ' images loaded' );

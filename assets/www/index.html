@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
+        <link rel="stylesheet" href="css/ladda-themeless.min.css" />
 		<script type="text/javascript" src="cordova.js"></script>
           <script type="text/javascript" src="js/PushwooshAndroid.js"></script>
 
@@ -30,6 +31,10 @@
         <script type="text/javascript" src="js/Toast.js"></script>
 <script type="text/javascript" src="js/jquery.lazyloadxt.min.js"></script>
      <script type="text/javascript" src="js/snap.min.js"></script>
+        <script type="text/javascript" src="js/spin.js"></script>
+ <script type="text/javascript" src="js/ladda.js"></script>
+
+
 
       <!--  <script type="text/javascript" src="PushNotification.js"></script>-->
         
@@ -89,11 +94,43 @@
 				</ul>
 			</div>-->
 
-			<div class="header" data-role="header" data-fullscreen="true" data-tap-toggle="true">
+			<div class="header" data-role="header" data-fullscreen="true" data-tap-toggle="true" id="header">
+                
 				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
 				<span class="title">DWIT News</span>
+                <span class="button-demo">	<button class="ladda-button" data-color="blue" data-style="zoom-in" data-spinner-color="#000000">!</button></span>
+
+               <!-- <div class="spinner"><h1></h1>
+  <div class="bounce1"><h1></h1></div>
+  <div class="bounce2"><h1></h1></div>
+  <div class="bounce3"><h1></h1></div>
+</div>-->
+                </div>
+         <!--          <div class="windows8" class="ui-btn-right">
+<div class="wBall" id="wBall_1">
+<div class="wInnerBall">
+</div>
+</div>
+<div class="wBall" id="wBall_2">
+<div class="wInnerBall">
+</div>
+</div>
+<div class="wBall" id="wBall_3">
+<div class="wInnerBall">
+</div>
+</div>
+<div class="wBall" id="wBall_4">
+<div class="wInnerBall">
+</div>
+</div>
+<div class="wBall" id="wBall_5">
+<div class="wInnerBall">
+</div>
+</div>
+</div> -->
+                
 				<!--<span class="open right"><a href="javascript:$.mobile.activePage.find('#panel-right').panel('open'); " in-app="true">&#xe805;</a></span>-->
-			</div>
+			
 
 			<!-- /#header -->
 		<!--	<div class="panel right" data-role="panel" data-position="right" data-display="overlay" id="panel-right">
@@ -129,6 +166,12 @@
                     
                     <!--  <div id="fixflickr" style="background:green;z-index:-5;position:absolute;width:420%;height:420%;left:-104%;top:-104%"> wazzow! </div>-->
                     <div class="scrollwrap"> 
+                        
+                        
+                     
+                        
+                        
+                        
        </div>
 <!--{{#ifCond categories.0.slug "news-snippets"}}
                        
@@ -186,6 +229,8 @@
 				</div>-->
 			</div>
 			<script type="text/javascript">
+  var l;
+            //   Ladda.bind( 'input[type=submit]' ); 
                 var snapper = new Snap({
     element: document.getElementById('home-page'),
                     disable: 'right',
@@ -211,7 +256,15 @@
 				
 				 });
                
+                
 $(document).one("pageshow","#home-page",function(){
+    // Bind normal buttons
+         //Create a new instance of ladda for the specified button
+ l = Ladda.create( document.querySelector( '.ladda-button' ) );
+
+// Start loading
+l.start();
+		//	Ladda.bind( '.button-demo button', { timeout: 2000 } );
 			//	$('#home-page').one("pageshow", function(event, ui) {
                     indexpage = 1;
                //  $(document).one("pageshow","#home-page",function(){
@@ -277,7 +330,13 @@ $(document).one("pageshow","#home-page",function(){
       });
     });
                 
-                 $(document).on("pagebeforehide","#home-page",function(){ // When leaving pagetwo          
+                 $(document).on("pagebeforehide","#home-page",function(){ // When leaving pagetwo     
+                    // console.log(snapper.state());
+                     console.log(snapper.state().state);
+                     
+                   if( snapper.state().state=="left" ){
+        snapper.close();
+    } 
  /*  $("body").find("*").removeAttr("disabled");
     $("body").find("a").unbind("click");*/
                         request.abort();
@@ -300,14 +359,16 @@ $(document).one("pageshow","#home-page",function(){
           */
     $(document).ajaxStart(function() {
         
-        $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:10px'/>");
+        $('.ladda-button').show();
+       // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:10px'/>");
        // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:12px; margin-right:80px'/>");
     //loading();
       //  $.mobile.loading('show');
 });
 
 $(document).ajaxStop(function() {
-  $('.header > img.ui-btn-right').remove();      
+    $('.ladda-button').hide();
+ // $('.header > img.ui-btn-right').remove();      
 //$(".header img:last-child").remove()
    // doneLoading();
 });

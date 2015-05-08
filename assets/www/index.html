@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="viewport"  id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -31,9 +31,6 @@
         <script type="text/javascript" src="js/Toast.js"></script>
 <script type="text/javascript" src="js/jquery.lazyloadxt.min.js"></script>
      <script type="text/javascript" src="js/snap.min.js"></script>
-        <script type="text/javascript" src="js/spin.js"></script>
- <script type="text/javascript" src="js/ladda.js"></script>
-
 
 
       <!--  <script type="text/javascript" src="PushNotification.js"></script>-->
@@ -97,9 +94,20 @@
 			<div class="header" data-role="header" data-fullscreen="true" data-tap-toggle="true" id="header">
                 
 				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
-				<span class="title">DWIT News</span>
-                <span class="button-demo">	<button class="ladda-button" data-color="blue" data-style="zoom-in" data-spinner-color="#000000">!</button></span>
-
+                
+				<span class="title">DWIT News            <h1></h1>
+<div class="slider">
+	<div class="line"></div>
+	<div class="break dot1"></div>
+	<div class="break dot2"></div>
+	<div class="break dot3"></div>
+    <div class="break dot4"></div>
+    <div class="break dot5"></div>
+    <div class="break dot6"></div>
+</div></span>
+            
+   
+          
                <!-- <div class="spinner"><h1></h1>
   <div class="bounce1"><h1></h1></div>
   <div class="bounce2"><h1></h1></div>
@@ -157,19 +165,19 @@
 			<!--        -->
 
 			<div id="blog-content" data-role="content" class="blog">
+               
 				<div id="blog-data" data-iscroll class="wrapper">
-          
-					<div class="iscroll-pulldown">
+           <div class="iscroll-pulldown">
 						<span class="iscroll-pull-icon"></span><span class="iscroll-pull-label"></span>
 					</div>
  
+					
                     
                     <!--  <div id="fixflickr" style="background:green;z-index:-5;position:absolute;width:420%;height:420%;left:-104%;top:-104%"> wazzow! </div>-->
                     <div class="scrollwrap"> 
                         
                         
-                     
-                        
+                    
                         
                         
        </div>
@@ -256,14 +264,22 @@
 				
 				 });
                
-                
+                   $(document).on('tap', "body > div.snap-drawers > div > div > ul > li", function (e) {
+                      // console.log("Clicked");
+                       snapper.close();
+               /*  $.mobile.activePage.find('#snap-drawer snap-drawer-left').on("click", function () {*/
+                     
+                 });
 $(document).one("pageshow","#home-page",function(){
     // Bind normal buttons
+      if( snapper.state().state=="left" ){
+        snapper.close();
+    } 
          //Create a new instance of ladda for the specified button
- l = Ladda.create( document.querySelector( '.ladda-button' ) );
+ //l = Ladda.create( document.querySelector( '.ladda-button' ) );
 
 // Start loading
-l.start();
+//l.start();
 		//	Ladda.bind( '.button-demo button', { timeout: 2000 } );
 			//	$('#home-page').one("pageshow", function(event, ui) {
                     indexpage = 1;
@@ -300,7 +316,7 @@ l.start();
                             indexpage=1;
                             beginAtIndex = 0;
 							app.get("blog", indexpage);
-						//	data.iscrollview.refresh();
+							data.iscrollview.refresh();
 						}
                     });
                     	$(".iscroll-wrapper", this).bind({
@@ -309,7 +325,7 @@ l.start();
                         app.get("blog", ++indexpage);
                           }
                       //       console.log(page);
-                      //  data.iscrollview.refresh();
+                        data.iscrollview.refresh();
                         
                     }
 					});                        
@@ -332,11 +348,9 @@ l.start();
                 
                  $(document).on("pagebeforehide","#home-page",function(){ // When leaving pagetwo     
                     // console.log(snapper.state());
-                     console.log(snapper.state().state);
+                  //   console.log(snapper.state().state);
                      
-                   if( snapper.state().state=="left" ){
-        snapper.close();
-    } 
+                 
  /*  $("body").find("*").removeAttr("disabled");
     $("body").find("a").unbind("click");*/
                         request.abort();
@@ -359,7 +373,7 @@ l.start();
           */
     $(document).ajaxStart(function() {
         
-        $('.ladda-button').show();
+       $('.slider').show();
        // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:10px'/>");
        // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:12px; margin-right:80px'/>");
     //loading();
@@ -367,7 +381,8 @@ l.start();
 });
 
 $(document).ajaxStop(function() {
-    $('.ladda-button').hide();
+     $('.slider').hide();
+   // $('.ladda-button').hide();
  // $('.header > img.ui-btn-right').remove();      
 //$(".header img:last-child").remove()
    // doneLoading();

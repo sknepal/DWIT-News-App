@@ -455,10 +455,10 @@ $(wrap).trigger("create");
                      //   doneLoading();
                     //    console.log("Nothing beyond.");
                         if ((type=='search' && searchFound==true) || type!='search'){
-                            window.plugins.toast.showShortBottom('There is nothing beyond this that matches your query.');
+                            window.plugins.toast.showShortBottom('No more results.');
                       //  showMessage('There is nothing beyond this that matches your query.', 3000);
                        
-                            if ($.mobile.activePage[0].id == 'home-page'){
+                 /*           if ($.mobile.activePage[0].id == 'home-page'){
                                 indexpage = 1;
                 }
                   else if ($.mobile.activePage[0].id == 'category-page'){
@@ -470,7 +470,7 @@ $(wrap).trigger("create");
                         else if ($.mobile.activePage[0].id== 'authorposts-page'){
                                 authorpostspage = 1;
                         }
-                 
+                 */
                             
                             /*app.get(type, page, arg);*/
                         }

@@ -326,57 +326,9 @@ overflow-x: hidden;
  padding: 3 !important;
  }*/
 
-/*
-.spinner {
-  margin: 100px auto 0;
-  width: 70px;
-  text-align: center;
-}
-
-.spinner > div {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
-
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-  animation: bouncedelay 1.4s infinite ease-in-out;
-   Prevent first frame from flickering when animation starts 
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-
-@-webkit-keyframes bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0.0) }
-  40% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes bouncedelay {
-  0%, 80%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 40% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
-}
-
-*/
-
 #home-page, #single-post-page {
     background: #BFC7D8;
-    z-index: 1;
+  
 }
 
 img.headerIconSecondRight {
@@ -390,16 +342,6 @@ margin: 7px;
 padding: 10px;
 }
 
-.button-demo {
-    
-   height: 1.2em;
-border: 0px none;
-position: absolute;
-float: right;
-right: 3.315em;
-top: 0px;
-margin: -5px;
-}
 
 
 .scrollable{
@@ -412,7 +354,7 @@ margin: -5px;
     transition-timing-function: linear, linear;
     -webkit-overflow-scrolling: touch;
 }
-#home-page, #single-post-poage{
+#home-page, #single-post-page{
     overflow: auto;
     -webkit-transition-property: top, bottom;
     transition-property: top, bottom;
@@ -421,6 +363,7 @@ margin: -5px;
     -webkit-transition-timing-function: linear, linear;
     transition-timing-function: linear, linear;
     -webkit-overflow-scrolling: touch;
+    -webkit-transform-style: preserve-3d;
 }
 
 .single div.iscroll-scroller {
@@ -453,6 +396,7 @@ margin: -5px;
     height: 100%;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
 }
  
 /*.wp-caption-text{
@@ -484,6 +428,7 @@ overflow-x: hidden;
 }
  
 .page.transition {
+    -webkit-transform-style: preserve-3d;
     -webkit-transition-duration: .25s;
     transition-duration: .25s;
 }
@@ -571,3 +516,137 @@ div#popupComment .ui-btn {
 	text-shadow: none;
 	border: none;
 }
+
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:100);
+
+body {
+ 
+  margin: 40px 50px;
+}
+
+/*
+h1 {
+  color: #4a8df8;
+  font-family: 'Raleway', cursive;
+  font-weight: 100;
+  font-stretch: normal;
+  font-size: 3em;
+    z-index: 1000;
+}*/
+
+
+.slider {
+    
+  position: absolute;
+  width: 100%;
+  height: 9px;
+  margin-top: -27px;
+    z-index: 1000;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+    background: #4a8df8;
+}
+
+.break {
+  position: absolute;
+  background: #222;
+  width: 6px;
+  height: 2px;
+}
+
+.dot1 {
+  -webkit-animation: loading 2s infinite;
+  -moz-animation: loading 2s infinite;
+  -ms-animation: loading 2s infinite;
+  -o-animation: loading 2s infinite;
+  animation: loading 2s infinite;
+}
+
+.dot2 {
+  -webkit-animation: loading 2s 0.5s infinite;
+  -moz-animation: loading 2s 0.5s infinite;
+  -ms-animation: loading 2s 0.5s infinite;
+  -o-animation: loading 2s 0.5s infinite;
+  animation: loading 2s 0.5s infinite;
+}
+
+.dot3 {
+  -webkit-animation: loading 2s 1s infinite;
+  -moz-animation: loading 2s 1s infinite;
+  -ms-animation: loading 2s 1s infinite;
+  -o-animation: loading 2s 1s infinite;
+  animation: loading 2s 1s infinite;
+}
+.dot4 {
+  -webkit-animation: loading 2s 1.5s infinite;
+  -moz-animation: loading 2s 1.5s infinite;
+  -ms-animation: loading 2s 1.5s infinite;
+  -o-animation: loading 2s 1.5s infinite;
+  animation: loading 2s 1.5s infinite;
+}
+
+.dot5 {
+  -webkit-animation: loading 2s 1.7s infinite;
+  -moz-animation: loading 2s 1.7s infinite;
+  -ms-animation: loading 2s 1.7s infinite;
+  -o-animation: loading 2s 1.7s infinite;
+  animation: loading 2s 1.7s infinite;
+}
+
+.dot6 {
+  -webkit-animation: loading 2s 1s infinite;
+  -moz-animation: loading 2s 1s infinite;
+  -ms-animation: loading 2s 1s infinite;
+  -o-animation: loading 2s 1s infinite;
+  animation: loading 2s 1s infinite;
+}
+
+@keyframes loading {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@-moz-keyframes loading {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes loading {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@-ms-keyframes loading {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@-o-keyframes loading {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+    

@@ -178,7 +178,7 @@ var app = {
                 }
 
                 else {
-                    console.log("Done w/ Error");
+                 //   console.log("Done w/ Error");
                     /*var intervalError = setInterval(function () {
                         $.mobile.loading('show', {
                             theme: "b",
@@ -188,7 +188,7 @@ var app = {
                         });
                         clearInterval(intervalError);
                     }, 1);*/
-           //         window.plugins.toast.showLongBottom('Error: ' + data.error, function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+                 window.plugins.toast.showLongBottom('Error: ' + data.error, function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
                     
                 }
                 document.getElementById('submit').disabled = false;

@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
+		<meta name="viewport" id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -51,7 +50,7 @@
 						<a href="" onclick="changePage('index.html');"  title="Home" data-rel="close" in-app="true">Home</a>
 					</li>
 					<li class="authors">
-						<a href="" onclick="changePage('authors.html');" title="Authors" data-rel="close" in-app="true">Authors</a>
+						<a href="authors.html" title="Authors" data-rel="close" in-app="true" data-prefetch>Authors</a>
 					</li>
 					<li class="aboutus">
 						<a href="" onclick="changePage('page.html?page=about-us');" title="About Us" data-rel="close" in-app="true" data-prefetch>About Us</a>
@@ -91,7 +90,7 @@
 				</ul>
 			</div>-->
 
-			<div class="header" data-role="header" data-fullscreen="true" data-tap-toggle="true" id="header">
+			<div class="header" data-role="header" id="header">
                 
 				<span class="open left"><a href="javascript:$.mobile.activePage.find('#panel-left').panel('open'); " in-app="true">&#xe809;</a></span>
                 
@@ -222,7 +221,7 @@
   
 			</div>
 
-			<div class="footer" data-id="footer" data-role="footer" data-fullscreen="true" data-tap-toggle="true">
+			<div class="footer" data-id="footer" data-role="footer">
                <!-- <li class="prev">
 							<a id="feedForward" href="javascript:prev('blog')" in-app="true">&nbsp;&nbsp;<span style="position: relative;top: -4px;">Prev</span> </a>-->
 <!--				<div data-role="navbar" class="nav">
@@ -313,19 +312,27 @@ $(document).one("pageshow","#home-page",function(){
               //  $('#home-page').one("pageinit",function(event, ui){
 					$(".iscroll-wrapper", this).bind({
 						iscroll_onpulldown : function(event, data) {
+                           // console.log(request.state());
+                             if(request.state()!='pending'){
                             indexpage=1;
                             beginAtIndex = 0;
 							app.get("blog", indexpage);
-							data.iscrollview.refresh();
+							
+                             }
+                             setTimeout(function () { data.iscrollview.refresh(); }, 500);
+                           
 						}
                     });
                     	$(".iscroll-wrapper", this).bind({
                         iscroll_onpullup : function(event, data){
+                           //  console.log(request.state());
+                              if(request.state()!='pending'){
                           if ($.mobile.activePage.find('#home-page-posts li').length==0) { app.get("blog", indexpage); } else{
                         app.get("blog", ++indexpage);
                           }
                       //       console.log(page);
-                        data.iscrollview.refresh();
+                                  }
+                        setTimeout(function () { data.iscrollview.refresh(); }, 500);
                         
                     }
 					});                        
@@ -372,7 +379,7 @@ $(document).one("pageshow","#home-page",function(){
     });
           */
     $(document).ajaxStart(function() {
-        
+       
        $('.slider').show();
        // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:10px'/>");
        // $(".header").append("<img src='img/loading.gif' class='ui-btn-right' style='margin:12px; margin-right:80px'/>");

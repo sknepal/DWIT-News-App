@@ -1,6 +1,7 @@
 var indexpage, catpage, searchpage, authorpostspage, where;
 var urlParamsSearch;
    var urlParams, urlParamsAuth, viewed = false;
+var ajaxInProgress = false;
  var hasDownload = false;
 $("#panel-left").on("click", function () {
    $("#panel-left").panel("close");

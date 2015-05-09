@@ -174,9 +174,11 @@ var app = {
                     $('#popupComment').popup('close');
                     window.plugins.toast.show('Your comment has been submitted. The author may still need to approve it before it appears.', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
                     $("form").trigger('reset');
+                     
                 }
 
                 else {
+                    console.log("Done w/ Error");
                     /*var intervalError = setInterval(function () {
                         $.mobile.loading('show', {
                             theme: "b",
@@ -186,14 +188,15 @@ var app = {
                         });
                         clearInterval(intervalError);
                     }, 1);*/
-                    window.plugins.toast.showLongBottom('Error: ' + data.error, function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+           //         window.plugins.toast.showLongBottom('Error: ' + data.error, function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+                    
                 }
-
-               doneLoading();
+                document.getElementById('submit').disabled = false;
+/*               doneLoading();
                 var doneCommentMessage = setInterval(function () {
                     $.mobile.loading('hide');
                     clearInterval(doneCommentMessage);
-                }, 2500);
+                }, 2500);*/
 
                 // var interval3 = setInterval(function(){ window.location.href='single.html';clearInterval(interval3);}, 3000);
             },
@@ -443,7 +446,7 @@ $(wrap).trigger("create");
                             }
                         
                     window[beginWhere] = i;
-                        
+                       // console.log(request.state());
                        // pageContainerElement.page({ domCache: true });
                          doneLoading(); 
                     dfd.resolve(data);

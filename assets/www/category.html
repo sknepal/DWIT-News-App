@@ -207,6 +207,7 @@
 			//	$('#category-page').one("pageinit",function(event, ui){
 					$(".iscroll-wrapper", this).bind({
 						iscroll_onpulldown : function(event, data) {
+                             if(request.state()!='pending'){
 							//react to a pull-down as necessary here
 						//	loading();
                             catpage = 1;
@@ -214,17 +215,21 @@
 					//		console.log(where);
                             beginAtCategory = 0;
 							//then call this to reset the pull-to-refresh controls:
-						//	data.iscrollview.refresh();
+							//data.iscrollview.refresh();
+                             }
+                             setTimeout(function () { data.iscrollview.refresh(); }, 500);
 						}
 					});
                       	$(".iscroll-wrapper", this).bind({
                         iscroll_onpullup : function(event, data){
+                             if(request.state()!='pending'){
                                if ($.mobile.activePage.find('#category-page-posts li').length==0) {  app.get("category", catpage, urlParams["cat"]); } else{
                         app.get("category", ++catpage, urlParams["cat"]);
                                }
                      //        console.log(page);
-                   //     data.iscrollview.refresh();
-                        
+                     //  data.iscrollview.refresh();
+                             }
+                             setTimeout(function () { data.iscrollview.refresh(); }, 500);
                     }
 					});   
 				});

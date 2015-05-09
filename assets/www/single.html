@@ -3,9 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
-
+	<meta name="viewport" id="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height;" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 
@@ -140,7 +138,7 @@
 						</div>
 
 						<div data-role="popup" id="popupComment" class="ui-content" data-theme="a">
-						<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value);">
+						<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value); document.getElementById('submit').disabled = true; ">
 						<label><i class="fa fa-user"></i>&nbsp;Name </label>
 						<input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
 						<label>&nbsp; Email </label>
@@ -149,7 +147,7 @@
 						<textarea cols="40" rows="8" pattern=".{20,}" required title="20 characters minimum" id="comment"></textarea>
 						<br />
 
-						<input type="submit" value="Submit" onclick="" />
+						<input type="submit" value="Submit" onclick="" id="submit"/>
 						</form>
 						</div>
 					</script>
@@ -196,6 +194,11 @@
 						window.open($(e.currentTarget).attr('href'), '_system', '');
 					}
 				});
+                     
+				$('form').on('submit', function(e) {
+					e.preventDefault();
+				});
+                    
                  /*   var imgLoad = imagesLoaded('#single-data');
 imgLoad.on( 'always', function() {
 //  console.log( imgLoad.images.length + ' images loaded' );
@@ -345,6 +348,14 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
    //   $("#single-content").updatelayout;
 });
 				
+  $(document).ajaxStart(function() {
+    //loading();
+});
+
+$(document).ajaxStop(function() {
+   // doneLoading();
+});
+     
                 
                 	$(document).on("pagebeforehide","#single-post-page",function(){ // When leaving pagetwo
  //  $("body").find("*").removeAttr("disabled");
@@ -381,8 +392,7 @@ $("[data-iscroll]").iscrollview("refresh"); // now refresh the iscrollview
 /*    $('#single-content').swiperight(function() {
     $.mobile.changePage("#page1");
 });*/
-                
-                
+           
                 $(function() {      
       $("#single-content").swipe( {
         //Generic swipe handler for all directions

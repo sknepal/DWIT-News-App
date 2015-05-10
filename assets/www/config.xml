@@ -95,9 +95,9 @@ permission on your app, which PhoneGap requires.
 
 <gap:config-file platform="android" parent="/manifest/application">
         android:windowSoftInputMode="adjustResize"
-        android:configChanges="orientation|keyboardHidden"
 </gap:config-file> 
 <!--
+  android:configChanges="orientation|keyboardHidden"
 Define access to external domains.
 <access /> - a blank access tag denies access to all external resources.
 <access origin="*" /> - a wildcard access tag allows access to all external resource.

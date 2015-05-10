@@ -170,7 +170,7 @@ var app = {
                         });
                         clearInterval(intervalSuccess);
                     }, 1);*/
-                    
+                    doneLoading();
                     $('#popupComment').popup('close');
                     window.plugins.toast.show('Your comment has been submitted. The author may still need to approve it before it appears.', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
                     $("form").trigger('reset');
@@ -178,6 +178,8 @@ var app = {
                 }
 
                 else {
+                    
+                    doneLoading();
                  //   console.log("Done w/ Error");
                     /*var intervalError = setInterval(function () {
                         $.mobile.loading('show', {
@@ -191,6 +193,8 @@ var app = {
                  window.plugins.toast.showLongBottom('Error: ' + data.error, function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
                     
                 }
+                
+                //    doneLoading();
                 document.getElementById('submit').disabled = false;
 /*               doneLoading();
                 var doneCommentMessage = setInterval(function () {

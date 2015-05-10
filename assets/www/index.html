@@ -24,13 +24,14 @@
 		<script type="text/javascript" src="js/SocialSharing.js"></script>
 		<script src="js/iscroll.js" type="text/javascript"></script>
 		<script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
+          <script type="text/javascript" src="js/snap.min.js"></script>
+
 		<script src="js/custom.js" type="text/javascript"></script>
 		<script src="js/pull.js" type="text/javascript"></script>
         <script src="js/jquery.touchSwipe.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/Toast.js"></script>
 <script type="text/javascript" src="js/jquery.lazyloadxt.min.js"></script>
-     <script type="text/javascript" src="js/snap.min.js"></script>
-
+   
 
       <!--  <script type="text/javascript" src="PushNotification.js"></script>-->
         
@@ -57,7 +58,7 @@
 					</li>
 		
 					<li class="search">
-						<a  href="javascript:$.mobile.activePage.find('#popupSearch').popup('open');" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
+						<a  href="javascript: setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open', '#home-page'); }, 700);" data-rel="popup" data-position-to="header" data-transition="pop" title="Search" in-app="true">Search</a>
 					</li>
                 </ul>
             </div>
@@ -236,15 +237,21 @@
 				</div>-->
 			</div>
 			<script type="text/javascript">
-  var l;
-            //   Ladda.bind( 'input[type=submit]' ); 
-                var snapper = new Snap({
+                
+   
+                                       var snapper = new Snap({
     element: document.getElementById('home-page'),
                     disable: 'right',
                     hyperextensible: false,
                     maxPosition: 200,
                     addBodyClasses: false
 });
+                
+                
+                
+ // var l;
+            //   Ladda.bind( 'input[type=submit]' ); 
+      
 				$('a').click(function(e) {
 					var href = ["#panel-left", "#panel-right", "#"];
 					if (!($.inArray($(e.currentTarget).attr('href'), href) != -1 || $(e.currentTarget).attr('in-app') == 'true')) {
@@ -260,21 +267,35 @@
       
     });*/
 				  $('#home-page').one("pageinit",function(event, ui){
-				
+      	
 				 });
-               
-                   $(document).on('tap', "body > div.snap-drawers > div > div > ul > li", function (e) {
+                  $(document).on('tap', "body > div.snap-drawers > div > div > ul > li", function (e) {
                       // console.log("Clicked");
                        snapper.close();
                /*  $.mobile.activePage.find('#snap-drawer snap-drawer-left').on("click", function () {*/
                      
                  });
+                  
 $(document).one("pageshow","#home-page",function(){
-    // Bind normal buttons
-      if( snapper.state().state=="left" ){
+  	                                                   $("#popupSearch input, #popupSearch textarea").on("focus", function () {
+    $("#popupSearch").popup("reposition", {
+        y: 50
+    });
+                                                         //  $("#popupSearch").resize();
+               //     console.log("test");
+});
+                   if( snapper.state().state=="left" ){
         snapper.close();
     } 
-         //Create a new instance of ladda for the specified button
+    
+     $(document).on('tap', "body > div.snap-drawers > div > div > ul > li", function (e) {
+                      // console.log("Clicked");
+                       snapper.close();
+               /*  $.mobile.activePage.find('#snap-drawer snap-drawer-left').on("click", function () {*/
+                     
+                 });
+    // Bind normal buttons
+       //Create a new instance of ladda for the specified button
  //l = Ladda.create( document.querySelector( '.ladda-button' ) );
 
 // Start loading
@@ -354,6 +375,8 @@ $(document).one("pageshow","#home-page",function(){
     });
                 
                  $(document).on("pagebeforehide","#home-page",function(){ // When leaving pagetwo     
+                      
+      
                     // console.log(snapper.state());
                   //   console.log(snapper.state().state);
                      
@@ -362,7 +385,10 @@ $(document).one("pageshow","#home-page",function(){
     $("body").find("a").unbind("click");*/
                         request.abort();
 });
-             
+            
+       
+        
+                            
                 /*
                         $(function() {      
       $("li.ui-li").swipe( {

@@ -46,7 +46,7 @@
 					</li>
 		
 					<li class="search">
-						<a  href="javascript:$.mobile.activePage.find('#popupSearch').popup('open');" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
+						<a  href="javascript:setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open', '#home-page'); }, 700);" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
 					</li>
                 </ul>
             </div>
@@ -187,6 +187,21 @@
 	//$(document).one("pageshow", '#single-post-page', function(event, ui) {
                  
 				$('#single-post-page').one("pageshow", function(event, ui) {
+                    
+          
+                               $("#popupComment input, #popupComment textarea").on("focus", function () {
+    $("#popupComment").popup("reposition", {
+        y: 0
+    });
+                    //console.log("test");
+});
+                                               $("#popupSearch input, #popupSearch textarea").on("focus", function () {
+    $("#popupSearch").popup("reposition", {
+        y: 0
+    });
+              //      console.log("test");
+});
+                    
           	$('a').click(function(e) {
 					var href = ["#panel-left", "#panel-right", "#"];
 					if (!($.inArray($(e.currentTarget).attr('href'), href) != -1 || $(e.currentTarget).attr('in-app') == 'true')) {
@@ -392,6 +407,7 @@ $(document).ajaxStop(function() {
 /*    $('#single-content').swiperight(function() {
     $.mobile.changePage("#page1");
 });*/
+     
            
                 $(function() {      
       $("#single-content").swipe( {
@@ -408,10 +424,10 @@ $(document).ajaxStop(function() {
         }
       });
     });
-                  $('#single-post-page').on('pagehide', function () {
+      /*            $('#single-post-page').on('pagehide', function () {
        $('#popupComment-popup').remove();
                            $('#popupComment-screen').remove();
-    });
+    });*/
 			</script>
 		</div>
 	</body>

@@ -94,7 +94,7 @@ permission on your app, which PhoneGap requires.
 </gap:config-file>
 
 <gap:config-file platform="android" parent="/manifest/application">
-        android:windowSoftInputMode="adjustResize"
+       android:windowSoftInputMode="stateVisible|adjustResize|adjustPan"
 </gap:config-file> 
 <!--
   android:configChanges="orientation|keyboardHidden"

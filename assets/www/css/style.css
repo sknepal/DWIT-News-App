@@ -309,11 +309,10 @@ ul li h3 {
 .singlewrapper {
 	height: auto;
 	width: auto;
-    padding: 15px;
 }
 .ui-listview {
 	margin: 0 !important;
-    padding: 15px;
+   
 }
 .ui-page {
 	-webkit-backface-visibility: hidden;
@@ -348,7 +347,14 @@ ul li h3 {
  font-family: 'Georgia';
  }
  */
-
+/*.ui-popup-container, .ui-popup {*/
+    #popupBasic-popup{
+  height: 97%;
+width: 98%;
+position: absolute;
+top: 10px;
+left: 0;
+}
 /*CSS - Abhishek*/
 #feedForward {
 	background: rgb(40, 114, 64);

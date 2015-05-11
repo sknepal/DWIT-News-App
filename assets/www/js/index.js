@@ -230,7 +230,8 @@ var app = {
                 var source = $("#author-template").html();
                 var template = Handlebars.compile(source);
                 var authorData = template(data);
-                $(".wrapperb .iscroll-content").append("<ul data-role='listview' data-inset='true' id='authorslist' data-dismissible='false' data-filter='true' data-filter-placeholder='Search for an author...'> </ul>");
+                //  $(".wrapperb").iscrollview(); // First create iscrollview
+                   $(".wrapperb .iscroll-content").append("<ul data-role='listview' data-inset='true' id='authorslist' data-dismissible='false' data-filter='true' data-filter-placeholder='Search for an author...'> </ul>");
                 $(".wrapperb").trigger("create");
                
                 $("#authorslist").html(authorData);
@@ -238,6 +239,16 @@ var app = {
                         $(".wrapperb").iscrollview("resizeWrapper");
                         $(".wrapperb").iscrollview("refresh");
                 $("#authorslist").listview("refresh");
+            //     $(".wrapper").listview().listview("refresh");
+                    //$('.wrapper').listview('refresh');
+                doneLoading();
+                dfd.resolve(data);
+                    /*
+$(".wrapperb").iscrollview("refresh"); // now refresh the iscrollview*/
+  
+          /*              $(".wrapperb").iscrollview("resizeWrapper");
+                        $(".wrapperb").iscrollview("refresh");*/
+                
             //     $(".wrapper").listview().listview("refresh");
                     //$('.wrapper').listview('refresh');
             //    doneLoading();

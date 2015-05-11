@@ -11,12 +11,16 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.pagination.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.simpledialog.min.css" />
+        
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/libs/handlebars.js"></script>
          <script type='text/javascript' src='js/fastclick.min.js'></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+         <script type="text/javascript" src="js/jquery.mobile.simpledialog2.min.js"></script>
+
            <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
 		<script type="text/javascript" src="js/SocialSharing.js"></script>
 		<script src="js/iscroll.js" type="text/javascript"></script>
@@ -27,6 +31,9 @@
         <script type="text/javascript" src="js/jquery.lazyloadxt.min.js"></script>
 
         <script src="js/jquery.touchSwipe.min.js" type="text/javascript"></script>
+        
+        <script src="js/snap.min.js" type="text/javascript"></script>
+         
 		<title>Post</title>
 	</head>
 	<body>
@@ -46,19 +53,20 @@
 					</li>
 		
 					<li class="search">
-						<a  href="javascript:setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open', '#home-page'); }, 700);" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>
+						<!--<a  href="javascript:setTimeout(function(){ $.mobile.activePage.find('#popupSearch').popup('open', '#home-page'); }, 700);" data-rel="popup" data-position-to="window" data-transition="pop" title="Search" in-app="true">Search</a>-->
+                        <a href="search.html" data-rel="dialog" in-app="true" title="Search">Search</a>
 					</li>
                 </ul>
             </div>
         </div>
      </div>
             <div class="hwrapper" id="single-post-page" data-role="page" >
-            <div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
+            <!--<div data-role="popup" id="popupSearch" class="ui-content" data-theme="a" >
 						<form action="" onsubmit="changePage('searchresults.html?search=' + $.mobile.activePage.find('#search').val(), 'fade', 'true');" target="_blank">
 							<input type="search" name="search" id="search" value="" data-mini="true" placeholder="Search" autofocus/>
 			
 						</form>
-					</div>
+					</div>-->
 		<!--	<div class="panel left" data-role="panel" data-position="left" data-display="push" id="panel-left">
 				<ul>
 					<li class="home">
@@ -121,7 +129,37 @@
 						<br>
 						{{{content}}}
 						{{share title url}}
-						<div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a" class="comment" id="commentslist">
+                      <div id="inlinecontent" style="display:none" 
+  data-options='{"mode":"blank","headerText":"Yo","headerClose":true,"blankContent":true, "fullScreen": true, 
+    "fullScreenForce": true, "themeDialog": "b",
+"themeInput": "e", "themeHeader": "a"}'>
+	<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value); document.getElementById('submit').disabled = true; ">
+						<label><i class="fa fa-user"></i>&nbsp;Name </label>
+						<input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
+						<label>&nbsp; Email </label>
+						<input type = "email" id = "email" value = "" required />
+						<label><i class="fa fa-pencil-square-o"></i>&nbsp;Comment </label>
+						<textarea cols="40" rows="8" pattern=".{20,}" required title="20 characters minimum" id="comment"></textarea>
+						<br />
+
+						<input type="submit" value="Submit" onclick="" id="submit"/>
+						</form>
+                        <h3>{{comments.length}} Comments</h3>
+						{{#each comments}}
+						<h4>{{{name}}}</h4>
+						<strong style="font-size: 14px;">Date:</strong><span style="font-size: 13px;"> {{date}}</span>
+						<p>{{{content}}}</p>
+						<hr style="border: 0;
+						height: 1px;
+						background: #333;
+						background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+						background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+						background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+						background-image: -o-linear-gradient(left, #ccc, #333, #ccc);">
+						{{/each}}
+                           <a rel='close' data-role='button' href='#'>Close</a>
+                        </div>
+			<!--			<div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a" data-content-theme="a" class="comment" id="commentslist">
 						<h3>{{comments.length}} Comments</h3>
 						{{#each comments}}
 						<h4>{{{name}}}</h4>
@@ -135,10 +173,10 @@
 						background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
 						background-image: -o-linear-gradient(left, #ccc, #333, #ccc);">
 						{{/each}}
-						</div>
+						</div>-->
 
 						<div data-role="popup" id="popupComment" class="ui-content" data-theme="a">
-						<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value); document.getElementById('submit').disabled = true; ">
+					<!--	<form action="" onsubmit="loading();app.commentSubmit(document.getElementById('name').value, document.getElementById('email').value, document.getElementById('comment').value); document.getElementById('submit').disabled = true; ">
 						<label><i class="fa fa-user"></i>&nbsp;Name </label>
 						<input type = "text" id = "name" value = "" pattern=".{3,}" required title="3 characters minimum" size="3"/>
 						<label>&nbsp; Email </label>
@@ -148,13 +186,13 @@
 						<br />
 
 						<input type="submit" value="Submit" onclick="" id="submit"/>
-						</form>
+						</form>-->
 						</div>
 					</script>
 				</div>
 			</div>
 
-			<div class="footer" data-id="footer" data-role="footer">
+			<div class="footer" data-id="footer" data-role="footer" data-position="fixed" data-tap-toggle="false" >
 				<div data-role="navbar" data-theme="b" data-content-theme="b">
 					<ul>
 
@@ -162,7 +200,8 @@
 							<a id="feedForward" href="javascript:share()" data-transition="pop" in-app="true" class="ui-link ui-btn"><i class="fa fa-2x fa-share-alt-square"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Share</span></a>
 						</li>
 						<li class="ui-block-b">
-							<a id="feedForward" class="ui-link ui-btn" href="#popupComment" data-rel="popup" data-position-to="window" data-transition="pop" in-app="true" aria-haspopup="true" aria-owns="popupComment" aria-expanded="false"><i class="fa fa-2x fa-comments-o"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Comment</span></a>
+                          <a href="#" id="simpleDialogComment" class="medium dialogLink" rel="simpleDialog2s">Comments</a>
+<!--							<a id="feedForward" class="ui-link ui-btn" href="#popupComment" data-rel="popup" data-position-to="window" data-transition="pop" in-app="true" aria-haspopup="true" aria-owns="popupComment" aria-expanded="false"><i class="fa fa-2x fa-comments-o"></i>&nbsp;&nbsp;<span style="position: relative;top: -4px;">Comment</span></a>-->
 						</li>
 
 					</ul>
@@ -173,7 +212,7 @@
          /*       $(document).one("pagebeforeshow", '#single-post-page', function(event, ui) {
                   singlePostClickLocation = ui.prevPage.attr('id');
                     */
-                        var snapper = new Snap({
+                        var snappers = new Snap({
     element: document.getElementById('single-post-page'),
                     disable: 'right',
                     hyperextensible: false,
@@ -183,12 +222,24 @@
                        
                  $(document).one("pageinit", '#single-post-page', function(event, ui) {
                 app.single();
+                              //        $('html').simpleDialog2();
+     
+         
                  });
+                
+                $(document).delegate('#simpleDialogComment', 'click', function() {
+                    $('#inlinecontent').simpledialog2();
+                     //   $('#simpleDialog2').simpledialog2();
+                });
+           
+        
 	//$(document).one("pageshow", '#single-post-page', function(event, ui) {
                  
 				$('#single-post-page').one("pageshow", function(event, ui) {
-                    
-          
+                 //   $('html').simpledialog2();
+    /*$('.dialogLink').simpledialog2({
+      showCloseLabel: false
+    });*/
                                $("#popupComment input, #popupComment textarea").on("focus", function () {
     $("#popupComment").popup("reposition", {
         y: 0
